@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Quiz</string>
+
+    <!-- Strings related to login and register -->
+    <string name="prompt_name">Name</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Sign up</string>
+    <string name="error_invalid_email">You must provide your TVZ email address.</string>
+    <string name="error_invalid_password">This password is too short (min 7 chars)</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+</resources>

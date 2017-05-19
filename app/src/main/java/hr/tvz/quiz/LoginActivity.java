@@ -13,14 +13,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cz.msebera.android.httpclient.Header;
+import java.util.HashMap;
+
 import hr.tvz.quiz.model.User;
 
 /**
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
 
+    private static final String BASE_URL = "http://vps411407.ovh.net/api/";
     private UserLocalStore userLocalStore;
 
     @Override
@@ -125,44 +127,41 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            RequestParams params = new RequestParams();
+
+            HashMap<String, String> params = new HashMap<String, String>();
             params.put("email", email);
             params.put("password", password);
-            Database.post("login", params, new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    // called when response HTTP status is "200 OK"
-                    System.out.println(response);
-                    try {
-                        int user_id = response.getInt("id");
-                        String name = response.getString("name");
-                        String email = response.getString("email");
-                        int role = response.getInt("role_id");
-                        User user = new User(user_id, name, email, role);
-                        logUserIn(user);
-                    } catch (JSONException e) {
-                        System.out.println(e.toString());
-                        onLogInFailed();
-                    }
-                    showProgress(false);
-                    Toast.makeText(LoginActivity.this, "You have successfully logged in.", Toast.LENGTH_LONG).show();
-                    onLogInSuccess();
-                }
 
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                    showProgress(false);
-                    Toast.makeText(getBaseContext(), "Your email and/or password do not match our records.", Toast.LENGTH_LONG).show();
-                }
+            JsonObjectRequest request = new JsonObjectRequest
+                    (BASE_URL + "login", new JSONObject(params), new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                int user_id = response.getInt("id");
+                                String name = response.getString("name");
+                                String email = response.getString("email");
+                                int role = response.getInt("role_id");
+                                User user = new User(user_id, name, email, role);
+                                logUserIn(user);
+                            } catch (JSONException e) {
+                                System.out.println(e.toString());
+                                onLogInFailed();
+                            }
+                            showProgress(false);
+                            Toast.makeText(LoginActivity.this, "You have successfully logged in.", Toast.LENGTH_LONG).show();
+                            onLogInSuccess();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            showProgress(false);
+                            Toast.makeText(LoginActivity.this, "An error happened. Please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    });
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, String response, Throwable throwable) {
-                    // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                    System.out.println(response);
-                    onLogInFailed();
-                    showProgress(false);
-                }
-            });
+            request.setShouldCache(false);
+            VolleySingleton.getInstance(this).addToRequestQueue(request);
         }
     }
 
@@ -181,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLogInFailed() {
-        Toast.makeText(getBaseContext(), "An error happened. Please try again later.", Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this, "Your email and/or password do not match our records.", Toast.LENGTH_LONG).show();
     }
 
     private void logUserIn(User user) {

@@ -11,14 +11,6 @@
     tools:context="hr.tvz.quiz.LoginActivity">
 
     <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
-
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
@@ -35,13 +27,12 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/login_email"
+                    android:id="@+id/editText_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -50,7 +41,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/login_password"
+                    android:id="@+id/editText_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -58,13 +49,12 @@
                     android:imeActionLabel="@string/action_sign_in"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/email_sign_in_button"
+                android:id="@+id/button_sign_in"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,14 +63,32 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/link_signup"
+                android:id="@+id/textView_create_account"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#c0392b"
-                android:text="No account yet? Create one..."
                 android:gravity="center"
-                android:textSize="16dip"/>
+                android:text="@string/action_create_account"
+                android:textColor="#3B5998"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView_forgotten_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/action_forgotten_password"
+                android:textColor="#3B5998"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
 </LinearLayout>

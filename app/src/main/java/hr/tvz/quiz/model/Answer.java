@@ -1,37 +1,47 @@
 package hr.tvz.quiz.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "id",
-        "answer",
-        "correct",
-        "question_id"
-})
 @Data
-@NoArgsConstructor
 public class Answer {
 
-    @JsonProperty("id")
+    @SerializedName("id")
+    @Expose
     public int id;
-    @JsonProperty("answer")
+    @SerializedName("answer")
+    @Expose
     public String answer;
-    @JsonProperty("correct")
+    @SerializedName("correct")
+    @Expose
     public boolean correct;
-    @JsonProperty("question_id")
+    @SerializedName("question_id")
+    @Expose
     public int questionId;
 
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public Answer() {
+    }
+
+    /**
+     *
+     * @param id
+     * @param questionId
+     * @param correct
+     * @param answer
+     */
     public Answer(int id, String answer, boolean correct, int questionId) {
+        super();
         this.id = id;
         this.answer = answer;
         this.correct = correct;
         this.questionId = questionId;
     }
+
 }

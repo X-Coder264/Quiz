@@ -1,57 +1,71 @@
 package hr.tvz.quiz.model;
 
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "id",
-        "name",
-        "email",
-        "password",
-        "image",
-        "role_id",
-        "title_id",
-        "course_id",
-        "statistics",
-        "game1",
-        "game2",
-})
 @Data
-@NoArgsConstructor
 public class UserT {
 
-    @JsonProperty("id")
+    @SerializedName("id")
+    @Expose
     public int id;
-    @JsonProperty("name")
+    @SerializedName("name")
+    @Expose
     public String name;
-    @JsonProperty("email")
+    @SerializedName("email")
+    @Expose
     public String email;
-    @JsonProperty("password")
+    @SerializedName("password")
+    @Expose
     public String password;
-    @JsonProperty("image")
+    @SerializedName("image")
+    @Expose
     public Object image;
-    @JsonProperty("role_id")
+    @SerializedName("role_id")
+    @Expose
     public String roleId;
-    @JsonProperty("title_id")
+    @SerializedName("title_id")
+    @Expose
     public String titleId;
-    @JsonProperty("course_id")
+    @SerializedName("course_id")
+    @Expose
     public String courseId;
-    @JsonProperty("statistics")
+    @SerializedName("statistics")
+    @Expose
     public List<Statistic> statistics = null;
-    @JsonProperty("game1")
+    @SerializedName("game1")
+    @Expose
     public List<Game> game1 = null;
-    @JsonProperty("game2")
+    @SerializedName("game2")
+    @Expose
     public List<Game> game2 = null;
 
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public UserT() {
+    }
+
+    /**
+     *
+     * @param id
+     * @param game2
+     * @param game1
+     * @param email
+     * @param name
+     * @param image
+     * @param courseId
+     * @param titleId
+     * @param password
+     * @param statistics
+     * @param roleId
+     */
     public UserT(int id, String name, String email, String password, Object image, String roleId, String titleId, String courseId, List<Statistic> statistics, List<Game> game1, List<Game> game2) {
+        super();
         this.id = id;
         this.name = name;
         this.email = email;

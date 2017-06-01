@@ -1,34 +1,42 @@
 package hr.tvz.quiz.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "id",
-        "points",
-        "user_id",
-        "subject_id"
-})
 @Data
-@NoArgsConstructor
 public class Statistic {
 
-    @JsonProperty("id")
+    @SerializedName("id")
+    @Expose
     public int id;
-    @JsonProperty("points")
+    @SerializedName("points")
+    @Expose
     public int points;
-    @JsonProperty("user_id")
+    @SerializedName("user_id")
+    @Expose
     public int userId;
-    @JsonProperty("subject_id")
+    @SerializedName("subject_id")
+    @Expose
     public int subjectId;
 
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public Statistic() {
+    }
+
+    /**
+     *
+     * @param id
+     * @param subjectId
+     * @param userId
+     * @param points
+     */
     public Statistic(int id, int points, int userId, int subjectId) {
+        super();
         this.id = id;
         this.points = points;
         this.userId = userId;

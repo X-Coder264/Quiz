@@ -1,39 +1,47 @@
 package hr.tvz.quiz.model;
 
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "id",
-        "name",
-        "subject_id",
-        "questions"
-})
 @Data
-@NoArgsConstructor
 public class Exam {
 
-    @JsonProperty("id")
+    @SerializedName("id")
+    @Expose
     public int id;
-    @JsonProperty("name")
+    @SerializedName("name")
+    @Expose
     public String name;
-    @JsonProperty("subject_id")
+    @SerializedName("subject_id")
+    @Expose
     public int subjectId;
-    @JsonProperty("questions")
+    @SerializedName("questions")
+    @Expose
     public List<Question> questions = null;
 
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public Exam() {
+    }
 
+    /**
+     *
+     * @param id
+     * @param subjectId
+     * @param name
+     * @param questions
+     */
     public Exam(int id, String name, int subjectId, List<Question> questions) {
+        super();
         this.id = id;
         this.name = name;
         this.subjectId = subjectId;
         this.questions = questions;
     }
+
 }

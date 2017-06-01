@@ -1,42 +1,52 @@
 package hr.tvz.quiz.model;
 
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "id",
-        "question",
-        "exam_id",
-        "reports",
-        "answers"
-})
 @Data
-@NoArgsConstructor
 public class Question {
 
-    @JsonProperty("id")
+    @SerializedName("id")
+    @Expose
     public int id;
-    @JsonProperty("question")
+    @SerializedName("question")
+    @Expose
     public String question;
-    @JsonProperty("exam_id")
+    @SerializedName("exam_id")
+    @Expose
     public int examId;
-    @JsonProperty("reports")
+    @SerializedName("reports")
+    @Expose
     public List<Report> reports = null;
-    @JsonProperty("answers")
+    @SerializedName("answers")
+    @Expose
     public List<Answer> answers = null;
 
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public Question() {
+    }
+
+    /**
+     *
+     * @param id
+     * @param reports
+     * @param answers
+     * @param examId
+     * @param question
+     */
     public Question(int id, String question, int examId, List<Report> reports, List<Answer> answers) {
+        super();
         this.id = id;
         this.question = question;
         this.examId = examId;
         this.reports = reports;
         this.answers = answers;
     }
+
 }

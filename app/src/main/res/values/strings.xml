@@ -2,13 +2,15 @@
     <string name="app_name">Quiz</string>
 
     <!-- Strings related to login and register -->
-    <string name="prompt_name">Name</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in</string>
-    <string name="action_sign_up">Sign up</string>
-    <string name="error_invalid_email">You must provide your TVZ email address.</string>
-    <string name="error_invalid_password">This password is too short (min 7 chars)</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="prompt_name">Ime i prezime</string>
+    <string name="prompt_email">E-mail adresa</string>
+    <string name="prompt_password">Lozinka</string>
+    <string name="action_sign_in">Prijava</string>
+    <string name="action_sign_up">Registracija</string>
+    <string name="error_invalid_email">Morate unijeti e-mail adresu s TVZ domenom.</string>
+    <string name="error_invalid_password">Lozinka je prekratka (minimalno 7 znakova).</string>
+    <string name="error_incorrect_password">Lozinka je netočna</string>
+    <string name="error_field_required">Polje je obavezno za ispunjavanje</string>
+    <string name="action_create_account">Izradi korisnički račun</string>
+    <string name="action_forgotten_password">Zaboravili ste lozinku?</string>
 </resources>

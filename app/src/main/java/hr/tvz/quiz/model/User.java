@@ -100,6 +100,18 @@ public class User {
      * @param email
      * @param password
      */
+    public User(String name, String email, String password) {
+        super();
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    /**
+     *
+     * @param email
+     * @param password
+     */
     public User(String email, String password) {
         super();
         this.email = email;

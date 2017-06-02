@@ -13,16 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-
 import hr.tvz.quiz.model.User;
+import hr.tvz.quiz.rest.APIClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A login screen that offers login via email/password.
@@ -36,7 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
 
-    private static final String BASE_URL = "http://vps411407.ovh.net/api/";
+    //private static final String BASE_URL = "http://vps411407.ovh.net/api/";
+    private APIClient client = APIClient.getInstance();
+    private User user;
     private UserLocalStore userLocalStore;
 
     @Override
@@ -128,42 +125,30 @@ public class LoginActivity extends AppCompatActivity {
             // perform the user login attempt.
             showProgress(true);
 
-            HashMap<String, String> params = new HashMap<String, String>();
-            params.put("email", email);
-            params.put("password", password);
+            user = new User(email, password);
+            Call<User> call = client.getApiService().createUser(user);
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    showProgress(false);
+                    if (response.code() == 200) {
+                        user = response.body();
+                        logUserIn(user);
+                        Toast.makeText(LoginActivity.this, "You have successfully logged in.", Toast.LENGTH_LONG).show();
+                        onLogInSuccess();
+                    } else {
+                        onLogInFailed();
+                    }
+                }
 
-            JsonObjectRequest request = new JsonObjectRequest
-                    (BASE_URL + "login", new JSONObject(params), new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                int user_id = response.getInt("id");
-                                String name = response.getString("name");
-                                String email = response.getString("email");
-                                int role = response.getInt("role_id");
-                                User user = new User(user_id, name, email, role);
-                                logUserIn(user);
-                            } catch (JSONException e) {
-                                System.out.println(e.toString());
-                                onLogInFailed();
-                            }
-                            showProgress(false);
-                            Toast.makeText(LoginActivity.this, "You have successfully logged in.", Toast.LENGTH_LONG).show();
-                            onLogInSuccess();
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            showProgress(false);
-                            Toast.makeText(LoginActivity.this, "An error happened. Please try again later.", Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-            request.setShouldCache(false);
-            VolleySingleton.getInstance(this).addToRequestQueue(request);
-        }
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(LoginActivity.this, "An error happened. Please try again later.", Toast.LENGTH_LONG).show();
+                    System.out.println(t.toString());
+                }
+            });
     }
+}
 
     private boolean isEmailValid(String email) {
         return email.contains("@tvz.hr") && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();

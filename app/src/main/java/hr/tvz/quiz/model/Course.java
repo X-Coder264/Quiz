@@ -15,12 +15,12 @@ public class Course {
     @SerializedName("name")
     @Expose
     public String name;
+    @SerializedName("semester")
+    @Expose
+    public Object semester;
     @SerializedName("subjects")
     @Expose
     public List<Subject> subjects = null;
-    @SerializedName("users")
-    @Expose
-    public List<User> users = null;
 
     /**
      * No args constructor for use in serialization
@@ -32,16 +32,16 @@ public class Course {
     /**
      *
      * @param id
-     * @param users
      * @param subjects
      * @param name
+     * @param semester
      */
-    public Course(int id, String name, List<Subject> subjects, List<User> users) {
+    public Course(int id, String name, Object semester, List<Subject> subjects) {
         super();
         this.id = id;
         this.name = name;
+        this.semester = semester;
         this.subjects = subjects;
-        this.users = users;
     }
 
 }

@@ -1,6 +1,6 @@
+
 package hr.tvz.quiz.model;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -15,9 +15,6 @@ public class Role {
     @SerializedName("name")
     @Expose
     public String name;
-    @SerializedName("users")
-    @Expose
-    public List<User> users = null;
 
     /**
      * No args constructor for use in serialization
@@ -29,14 +26,12 @@ public class Role {
     /**
      *
      * @param id
-     * @param users
      * @param name
      */
-    public Role(int id, String name, List<User> users) {
+    public Role(int id, String name) {
         super();
         this.id = id;
         this.name = name;
-        this.users = users;
     }
 
 }

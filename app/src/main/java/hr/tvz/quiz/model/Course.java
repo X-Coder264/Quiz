@@ -17,7 +17,7 @@ public class Course {
     public String name;
     @SerializedName("semester")
     @Expose
-    public Object semester;
+    public int semester;
     @SerializedName("subjects")
     @Expose
     public List<Subject> subjects = null;
@@ -36,7 +36,7 @@ public class Course {
      * @param name
      * @param semester
      */
-    public Course(int id, String name, Object semester, List<Subject> subjects) {
+    public Course(int id, String name, int semester, List<Subject> subjects) {
         super();
         this.id = id;
         this.name = name;

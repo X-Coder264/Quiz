@@ -1,6 +1,9 @@
 package hr.tvz.quiz.rest;
 
 import hr.tvz.quiz.model.User;
+import java.util.List;
+
+import hr.tvz.quiz.model.Course;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -18,9 +21,16 @@ public interface APIInterface {
     @POST("user")
     Call<User> createUser(@Body User user);
 
+    @GET("course")
+    Call<List<Course>> getCourses();
+
 /*
     @GET("group/{id}/users")
     Call<List<User>> groupList(@Path("id") int groupId, @Query("sort") String sort);
+
+
+    @POST("users/new")
+    Call<User> createUser(@Body User user);
 
 
     @GET("/report")

@@ -1,9 +1,8 @@
 package hr.tvz.quiz.model;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 import lombok.Data;
 
@@ -24,10 +23,10 @@ public class User {
     public String password;
     @SerializedName("image")
     @Expose
-    public Object image;
+    public String image;
     @SerializedName("semester")
     @Expose
-    public Object semester;
+    public int semester;
     @SerializedName("role_id")
     @Expose
     public int roleId;
@@ -77,7 +76,7 @@ public class User {
      * @param semester
      * @param roleId
      */
-    public User(int id, String name, String email, String password, Object image, Object semester, int roleId, int titleId, int courseId, List<Statistic> statistics, List<Game> game1, List<Game> game2, Role role, Title title) {
+    public User(int id, String name, String email, String password, String image, int semester, int roleId, int titleId, int courseId, List<Statistic> statistics, List<Game> game1, List<Game> game2, Role role, Title title) {
         super();
         this.id = id;
         this.name = name;
@@ -132,5 +131,4 @@ public class User {
         this.email = email;
         this.roleId = role;
     }
-
 }

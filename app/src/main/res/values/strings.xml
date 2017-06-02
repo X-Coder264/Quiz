@@ -25,4 +25,11 @@
     <string name="choose_play_mode">Način igranja:</string>
     <string name="subject_name">Matematika</string>
     <string name="questions_coverage">150/200</string>
+    <string name="action_answer_check">Potvrdi odgovor</string>
+    <string name="single_player_question">Koliko je 2 + 2?</string>
+    <string name="current_question_single_player">Pitanje: 1/10</string>
+    <string name="action_answer_1_single_player">5</string>
+    <string name="action_answer_2_single_player">4</string>
+    <string name="action_answer_3_single_player">3</string>
+    <string name="action_answer_4_single_player">6</string>
 </resources>

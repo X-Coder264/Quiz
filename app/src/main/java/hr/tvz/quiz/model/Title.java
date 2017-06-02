@@ -1,9 +1,11 @@
 package hr.tvz.quiz.model;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Data;
+
+@Data
 public class Title {
 
     @SerializedName("id")
@@ -15,9 +17,6 @@ public class Title {
     @SerializedName("points")
     @Expose
     public int points;
-    @SerializedName("users")
-    @Expose
-    public List<User> users = null;
 
     /**
      * No args constructor for use in serialization
@@ -29,16 +28,14 @@ public class Title {
     /**
      *
      * @param id
-     * @param users
      * @param name
      * @param points
      */
-    public Title(int id, String name, int points, List<User> users) {
+    public Title(int id, String name, int points) {
         super();
         this.id = id;
         this.name = name;
         this.points = points;
-        this.users = users;
     }
 
 }

@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mPasswordView = (EditText) findViewById(R.id.editText_password);
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.button_sign_in);
+        Button mEmailSignInButton = (Button) findViewById(R.id.button_login);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,8 +76,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+        mLoginFormView = findViewById(R.id.scrollView_login_form);
+        mProgressView = findViewById(R.id.progressBar_login_progress);
     }
 
 
@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(true);
 
             user = new User(email, password);
-            Call<User> call = client.getApiService().createUser(user);
+            Call<User> call = client.getApiService().login(user);
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {

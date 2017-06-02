@@ -11,17 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-
 import hr.tvz.quiz.model.User;
+import hr.tvz.quiz.rest.APIClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -29,35 +23,41 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText mNameView;
     private EditText mEmailView;
     private EditText mPasswordView;
+    private EditText mPasswordConfirmationView;
+    private Button mSignInButton;
     private View mProgressView;
     private View mLoginFormView;
 
-    private static final String BASE_URL = "http://vps411407.ovh.net/api/";
+    //private static final String BASE_URL = "http://vps411407.ovh.net/api/";
+    private APIClient client = APIClient.getInstance();
+    private User user;
     private UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_sign_up);
 
         userLocalStore = new UserLocalStore(this);
 
         // Set up the sign up form.
-        mNameView = (EditText) findViewById(R.id.signup_name);
-        mEmailView = (EditText) findViewById(R.id.signup_email);
+        mNameView = (EditText) findViewById(R.id.editText_name_registration);
+        mEmailView = (EditText) findViewById(R.id.editText_email_registration);
 
-        mPasswordView = (EditText) findViewById(R.id.signup_password);
+        mPasswordView = (EditText) findViewById(R.id.editText_password_registration);
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_up_button);
-        mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
+        mPasswordConfirmationView = (EditText) findViewById(R.id.editText_password_repeat_registration);
+
+        mSignInButton = (Button) findViewById(R.id.button_sign_up);
+        mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptSignUp();
             }
         });
 
-        mLoginFormView = findViewById(R.id.email_signup_form);
-        mProgressView = findViewById(R.id.signup_progress);
+        mLoginFormView = findViewById(R.id.scrollView_registration_form);
+        mProgressView = findViewById(R.id.progressBar_registration_progress);
     }
 
     /**
@@ -74,6 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
         String name = mNameView.getText().toString();
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        String password_confirmation = mPasswordConfirmationView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -81,6 +82,13 @@ public class SignUpActivity extends AppCompatActivity {
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+        // Check if the entered passwords match.
+        if (!password.equals(password_confirmation)) {
+            mPasswordView.setError(getString(R.string.error_password_confirmation));
             focusView = mPasswordView;
             cancel = true;
         }
@@ -112,46 +120,28 @@ public class SignUpActivity extends AppCompatActivity {
             // perform the user register attempt.
             showProgress(true);
 
-            HashMap<String, String> params = new HashMap<String, String>();
-            params.put("name", name);
-            params.put("email", email);
-            params.put("password", password);
+            user = new User(name, email, password);
+            Call<User> call = client.getApiService().createUser(user);
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    showProgress(false);
+                    if (response.code() >= 200 && response.code() <= 202) {
+                        user = response.body();
+                        logUserIn(user);
+                        Toast.makeText(SignUpActivity.this, "You have successfully logged in.", Toast.LENGTH_LONG).show();
+                        onSignUpSuccess();
+                    } else {
+                        onSignUpFailed();
+                    }
+                }
 
-            JsonObjectRequest request = new JsonObjectRequest
-                    (BASE_URL + "register", new JSONObject(params), new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                int user_id = response.getInt("id");
-                                String name = response.getString("name");
-                                String email = response.getString("email");
-                                int role = response.getInt("role_id");
-                                User user = new User(user_id, name, email, role);
-                                logUserIn(user);
-                            } catch (JSONException e) {
-                                System.out.println(e.toString());
-                                onSignUpFailed();
-                            }
-                            showProgress(false);
-                            onSignUpSuccess();
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            showProgress(false);
-                            error.printStackTrace();
-                            System.out.println(error.getMessage());
-                            onSignUpFailed();
-                        }
-                    });
-
-            request.setShouldCache(false);
-            //Set retry policy timeout to 10 seconds, otherwise the server
-            //doesn't manage to respond in time
-            request.setRetryPolicy(new DefaultRetryPolicy(10000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            VolleySingleton.getInstance(this).addToRequestQueue(request);
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(SignUpActivity.this, "An error happened. Please try again later.", Toast.LENGTH_LONG).show();
+                    System.out.println(t.toString());
+                }
+            });
         }
     }
 

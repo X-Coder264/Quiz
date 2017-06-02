@@ -1,8 +1,9 @@
 package hr.tvz.quiz.model;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 import lombok.Data;
 
@@ -99,11 +100,14 @@ public class User {
      * @param email
      * @param password
      */
-    public User(String name, String email, String password) {
+    public User(String name, String email, String password, int title_id, int course_id, int role_id) {
         super();
         this.name = name;
         this.email = email;
         this.password = password;
+        this.titleId = title_id;
+        this.courseId = course_id;
+        this.roleId = role_id;
     }
 
     /**

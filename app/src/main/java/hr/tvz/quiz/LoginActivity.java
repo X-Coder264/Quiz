@@ -63,10 +63,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        SignUpLink = (TextView) findViewById(R.id.textView_forgotten_password);
+        SignUpLink = (TextView) findViewById(R.id.textView_create_account);
 
         SignUpLink.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // Start the SignUp activity

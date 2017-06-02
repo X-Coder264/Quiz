@@ -13,6 +13,7 @@
     <string name="action_multi_player">Dva igrača</string>
     <string name="error_invalid_email">Morate unijeti e-mail adresu s TVZ domenom.</string>
     <string name="error_invalid_password">Lozinka je prekratka (minimalno 7 znakova).</string>
+    <string name="error_password_confirmation">Lozinke se ne podudaraju.</string>
     <string name="error_incorrect_password">Lozinka je netočna</string>
     <string name="error_field_required">Polje je obavezno za ispunjavanje</string>
     <string name="action_create_account">Izradi korisnički račun</string>

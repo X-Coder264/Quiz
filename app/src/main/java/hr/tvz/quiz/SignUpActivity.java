@@ -75,6 +75,11 @@ public class SignUpActivity extends AppCompatActivity {
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
         String password_confirmation = mPasswordConfirmationView.getText().toString();
+        // a new user gets the "User" role by default
+        int role_id = 1;
+        int title_id = 1;
+        // TODO : add picking course from a spinner
+        int course_id = 1;
 
         boolean cancel = false;
         View focusView = null;
@@ -120,7 +125,7 @@ public class SignUpActivity extends AppCompatActivity {
             // perform the user register attempt.
             showProgress(true);
 
-            user = new User(name, email, password);
+            user = new User(name, email, password, title_id, course_id, role_id);
             Call<User> call = client.getApiService().createUser(user);
             call.enqueue(new Callback<User>() {
                 @Override

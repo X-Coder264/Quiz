@@ -10,9 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="hr.tvz.quiz.SignUpActivity">
 
-    <!-- Login progress -->
+    <!-- Registration progress -->
     <ProgressBar
-        android:id="@+id/signup_progress"
+        android:id="@+id/progressBar_registration_progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,12 +20,11 @@
         android:visibility="gone" />
 
     <ScrollView
-        android:id="@+id/signup_form"
+        android:id="@+id/scrollView_registration_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/email_signup_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -35,13 +34,12 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/signup_name"
+                    android:id="@+id/editText_name_registration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_name"
                     android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -50,13 +48,12 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/signup_email"
+                    android:id="@+id/editText_email_registration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -65,27 +62,66 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/signup_password"
+                    android:id="@+id/editText_password_registration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in"
+                    android:imeActionId="@+id/registration"
+                    android:imeActionLabel="@string/action_registration"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/editText_password_repeat_registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_repeat_password"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/action_registration"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinner_semester_registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:dropDownWidth="match_parent" />
+
+            <Spinner
+                android:id="@+id/spinner_course_registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:dropDownWidth="match_parent" />
+
             <Button
-                android:id="@+id/email_sign_up_button"
+                android:id="@+id/button_registration"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_up"
+                android:text="@string/action_registration"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_forgotten_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/action_existing_account"
+                android:textColor="#3B5998"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>

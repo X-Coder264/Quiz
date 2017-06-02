@@ -5,17 +5,24 @@
     <string name="prompt_name">Ime i prezime</string>
     <string name="prompt_email">E-mail adresa</string>
     <string name="prompt_password">Lozinka</string>
-    <string name="action_sign_in">Prijava</string>
-    <string name="action_sign_up">Registracija</string>
+    <string name="prompt_repeat_password">Ponovite lozinku</string>
+    <string name="action_login">Prijava</string>
+    <string name="action_registration">Registracija</string>
     <string name="action_play">Igraj</string>
+    <string name="action_single_player">Jedan igrač</string>
+    <string name="action_multi_player">Dva igrača</string>
     <string name="error_invalid_email">Morate unijeti e-mail adresu s TVZ domenom.</string>
     <string name="error_invalid_password">Lozinka je prekratka (minimalno 7 znakova).</string>
     <string name="error_incorrect_password">Lozinka je netočna</string>
     <string name="error_field_required">Polje je obavezno za ispunjavanje</string>
     <string name="action_create_account">Izradi korisnički račun</string>
     <string name="action_forgotten_password">Zaboravili ste lozinku?</string>
+    <string name="action_existing_account">Posjedujem korisnički račun</string>
     <string name="student_title">Početnik</string>
     <string name="student_name">Pero Perić</string>
     <string name="student_semester">1. godina</string>
     <string name="student_course">Informatika</string>
+    <string name="choose_play_mode">Način igranja:</string>
+    <string name="subject_name">Matematika</string>
+    <string name="questions_coverage">150/200</string>
 </resources>

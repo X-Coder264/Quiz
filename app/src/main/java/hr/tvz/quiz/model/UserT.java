@@ -29,13 +29,13 @@ public class UserT {
     public Object semester;
     @SerializedName("role_id")
     @Expose
-    public String roleId;
+    public int roleId;
     @SerializedName("title_id")
     @Expose
-    public String titleId;
+    public int titleId;
     @SerializedName("course_id")
     @Expose
-    public String courseId;
+    public int courseId;
     @SerializedName("statistics")
     @Expose
     public List<Statistic> statistics = null;
@@ -76,7 +76,7 @@ public class UserT {
      * @param semester
      * @param roleId
      */
-    public UserT(int id, String name, String email, String password, Object image, Object semester, String roleId, String titleId, String courseId, List<Statistic> statistics, List<Game> game1, List<Game> game2, Role role, Title title) {
+    public UserT(int id, String name, String email, String password, Object image, Object semester, int roleId, int titleId, int courseId, List<Statistic> statistics, List<Game> game1, List<Game> game2, Role role, Title title) {
         super();
         this.id = id;
         this.name = name;

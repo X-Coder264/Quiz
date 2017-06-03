@@ -97,10 +97,15 @@ public class User {
 
     /**
      *
+     * @param name
      * @param email
      * @param password
+     * @param title_id
+     * @param course_id
+     * @param role_id
+     * @param semester
      */
-    public User(String name, String email, String password, int title_id, int course_id, int role_id) {
+    public User(String name, String email, String password, int title_id, int course_id, int role_id, int semester) {
         super();
         this.name = name;
         this.email = email;
@@ -108,6 +113,7 @@ public class User {
         this.titleId = title_id;
         this.courseId = course_id;
         this.roleId = role_id;
+        this.semester = semester;
     }
 
     /**

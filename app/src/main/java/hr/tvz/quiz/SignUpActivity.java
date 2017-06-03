@@ -113,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
         // Check if the entered passwords match.
         if (!password.equals(password_confirmation)) {
-            mPasswordView.setError(getString(R.string.error_password_confirmation));
+            mPasswordView.setError(getString(R.string.error_incorrect_password));
             focusView = mPasswordView;
             cancel = true;
         }

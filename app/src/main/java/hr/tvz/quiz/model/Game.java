@@ -3,10 +3,12 @@ package hr.tvz.quiz.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class Game {
+public class Game implements Serializable {
 
     @SerializedName("id")
     @Expose

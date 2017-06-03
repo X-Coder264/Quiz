@@ -1,5 +1,6 @@
 package hr.tvz.quiz.model;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,11 +8,14 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
-public class Subject {
+public class Subject implements Serializable {
 
     @SerializedName("id")
     @Expose
     public int id;
+    @SerializedName("semester")
+    @Expose
+    public int semester;
     @SerializedName("name")
     @Expose
     public String name;
@@ -40,10 +44,11 @@ public class Subject {
      * @param exam
      * @param statistics
      */
-    public Subject(int id, String name, List<Exam> exam, List<Statistic> statistics, List<Game> games) {
+    public Subject(int id, String name, int semester, List<Exam> exam, List<Statistic> statistics, List<Game> games) {
         super();
         this.id = id;
         this.name = name;
+        this.semester = semester;
         this.exam = exam;
         this.statistics = statistics;
         this.games = games;

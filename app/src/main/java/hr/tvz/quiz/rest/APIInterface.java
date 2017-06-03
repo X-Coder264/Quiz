@@ -9,6 +9,8 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
+import rx.Observable;
 
 public interface APIInterface {
 
@@ -23,6 +25,9 @@ public interface APIInterface {
 
     @GET("course")
     Call<List<Course>> getCourses();
+
+    @GET("course")
+    Observable<List<Course>> getCoursesRx();
 
 /*
     @GET("group/{id}/users")

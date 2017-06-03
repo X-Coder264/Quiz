@@ -8,8 +8,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="hr.tvz.quiz.LoginActivity">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <ScrollView
         android:id="@+id/scrollView_single_player_question_form"
@@ -21,6 +20,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textView_single_player_question_timer"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView_current_question_single_player"
@@ -43,53 +51,36 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView_answer_1_single_player"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:text="@string/action_answer_1_single_player"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView_answer_2_single_player"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:text="@string/action_answer_2_single_player"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView_answer_3_single_player"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:text="@string/action_answer_3_single_player"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView_answer_4_single_player"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:text="@string/action_answer_4_single_player"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-
             <Button
-                android:id="@+id/button_confirm_answer_single_player"
+                android:id="@+id/button_single_player_answer1"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_answer_check"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_single_player_answer2"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_single_player_answer3"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_single_player_answer4"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:textStyle="bold" />
 
         </LinearLayout>

@@ -3,10 +3,12 @@ package hr.tvz.quiz.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class Statistic {
+public class Statistic implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -14,6 +16,9 @@ public class Statistic {
     @SerializedName("points")
     @Expose
     public int points;
+    @SerializedName("questions_user")
+    @Expose
+    public String questionsUser;
     @SerializedName("user_id")
     @Expose
     public int userId;
@@ -34,11 +39,13 @@ public class Statistic {
      * @param subjectId
      * @param userId
      * @param points
+     * @param questionsUser
      */
-    public Statistic(int id, int points, int userId, int subjectId) {
+    public Statistic(int id, int points, String questionsUser, int userId, int subjectId) {
         super();
         this.id = id;
         this.points = points;
+        this.questionsUser = questionsUser;
         this.userId = userId;
         this.subjectId = subjectId;
     }

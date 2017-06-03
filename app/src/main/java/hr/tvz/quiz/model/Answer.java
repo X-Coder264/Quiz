@@ -3,11 +3,13 @@ package hr.tvz.quiz.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-public class Answer {
+public class Answer implements Serializable {
 
     @SerializedName("id")
     @Expose

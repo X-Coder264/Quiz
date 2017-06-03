@@ -13,7 +13,6 @@
     <string name="action_multi_player">Dva igrača</string>
     <string name="error_invalid_email">Morate unijeti e-mail adresu s TVZ domenom.</string>
     <string name="error_invalid_password">Lozinka je prekratka (minimalno 7 znakova).</string>
-    <string name="error_password_confirmation">Lozinke se ne podudaraju.</string>
     <string name="error_incorrect_password">Lozinka je netočna</string>
     <string name="error_field_required">Polje je obavezno za ispunjavanje</string>
     <string name="action_create_account">Izradi korisnički račun</string>
@@ -33,4 +32,9 @@
     <string name="action_answer_2_single_player">4</string>
     <string name="action_answer_3_single_player">3</string>
     <string name="action_answer_4_single_player">6</string>
+    <string name="action_play_again_single_player">Ponovi</string>
+    <string name="action_exit_single_player">Izlaz</string>
+    <string name="text_single_player_result">Broj točnih odgovora:</string>
+    <string name="number_correct_answer_single_player_end_result">9/10</string>
+
 </resources>

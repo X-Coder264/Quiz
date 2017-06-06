@@ -11,6 +11,7 @@
     <string name="action_play">Igraj</string>
     <string name="action_single_player">Jedan igrač</string>
     <string name="action_multi_player">Dva igrača</string>
+    <string name="action_send_report">Pošalji prijavu</string>
     <string name="error_invalid_email">Morate unijeti e-mail adresu s TVZ domenom.</string>
     <string name="error_invalid_password">Lozinka je prekratka (minimalno 7 znakova).</string>
     <string name="error_incorrect_password">Lozinka je netočna</string>
@@ -18,6 +19,7 @@
     <string name="action_create_account">Izradi korisnički račun</string>
     <string name="action_forgotten_password">Zaboravili ste lozinku?</string>
     <string name="action_existing_account">Posjedujem korisnički račun</string>
+    <string name="action_report_question">Prijavi</string>
     <string name="student_title">Početnik</string>
     <string name="student_name">Pero Perić</string>
     <string name="student_semester">1. godina</string>
@@ -36,5 +38,6 @@
     <string name="action_exit_single_player">Izlaz</string>
     <string name="text_single_player_result">Broj točnih odgovora:</string>
     <string name="number_correct_answer_single_player_end_result">9/10</string>
+    <string name="hint_enter_report">Upišite primjedbu na pitanje...</string>
 
 </resources>

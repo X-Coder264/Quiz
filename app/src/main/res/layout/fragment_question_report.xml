@@ -24,7 +24,7 @@
             <TextView
                 android:id="@+id/textView_current_question_report"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="@string/current_question_single_player"
                 android:textAlignment="center"
@@ -34,50 +34,51 @@
             <TextView
                 android:id="@+id/textView_question_report"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:minHeight="60dp"
                 android:text="@string/single_player_question"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <Button
+            <TextView
                 android:id="@+id/button_question_report_answer1"
-                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="20dp"
                 android:layout_marginTop="15dp"
                 android:textStyle="bold" />
 
-            <Button
+            <TextView
                 android:id="@+id/button_question_report_answer2"
-                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="20dp"
                 android:layout_marginTop="15dp"
                 android:textStyle="bold" />
 
-            <Button
+            <TextView
                 android:id="@+id/button_question_report_answer3"
-                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="20dp"
                 android:layout_marginTop="15dp"
                 android:textStyle="bold" />
 
-            <Button
+            <TextView
                 android:id="@+id/button_question_report_answer4"
-                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="20dp"
                 android:layout_marginTop="15dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editText_user_report_text"
                 android:layout_width="match_parent"
-                android:layout_marginTop="19dp"
+                android:layout_marginTop="30dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.95"
                 android:ems="10"

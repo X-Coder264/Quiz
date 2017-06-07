@@ -11,7 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <ScrollView
-        android:id="@+id/scrollView_question_report_form"
+        android:id="@+id/scrollView_admin_reported_question_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -20,16 +20,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:weightSum="1">
-
-            <TextView
-                android:id="@+id/textView_current_question_report"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="@string/current_question_single_player"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView_question_report"
@@ -43,58 +33,74 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/button_question_report_answer1"
+            <CheckBox
+                android:id="@+id/checkBox_answer_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="20dp"
                 android:layout_marginTop="15dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/button_question_report_answer2"
+            <CheckBox
+                android:id="@+id/checkBox_answer_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="20dp"
                 android:layout_marginTop="15dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/button_question_report_answer3"
+            <CheckBox
+                android:id="@+id/checkBox_answer_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="20dp"
                 android:layout_marginTop="15dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/button_question_report_answer4"
+            <CheckBox
+                android:id="@+id/checkBox_answer_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="20dp"
                 android:layout_marginTop="15dp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/editText_user_report_text"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_user_report"
                 android:layout_width="match_parent"
-                android:layout_marginTop="30dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.95"
-                android:ems="10"
-                android:hint="@string/hint_enter_report"
-                android:inputType="textMultiLine"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/button_send_report"
-                style="?android:textAppearanceSmall"
+            </android.support.v7.widget.RecyclerView>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:text="@string/action_send_report"/>
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_accept_report"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/action_accept_report" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/button_reject_report"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/action_reject_report" />
+
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
+
+
 </LinearLayout>

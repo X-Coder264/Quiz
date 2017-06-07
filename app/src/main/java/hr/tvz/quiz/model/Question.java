@@ -12,13 +12,13 @@ public class Question implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public int id;
+    public Integer id;
     @SerializedName("question")
     @Expose
     public String question;
     @SerializedName("exam_id")
     @Expose
-    public int examId;
+    public Integer examId;
     @SerializedName("reports")
     @Expose
     public List<Report> reports = null;
@@ -41,7 +41,7 @@ public class Question implements Serializable {
      * @param examId
      * @param question
      */
-    public Question(int id, String question, int examId, List<Report> reports, List<Answer> answers) {
+    public Question(Integer id, String question, Integer examId, List<Report> reports, List<Answer> answers) {
         super();
         this.id = id;
         this.question = question;

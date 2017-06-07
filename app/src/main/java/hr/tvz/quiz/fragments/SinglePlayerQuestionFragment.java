@@ -75,7 +75,7 @@ public class SinglePlayerQuestionFragment extends Fragment {
 
             public void onFinish() {
                 tTimer.setText("Out of time!");
-                mListener.OnQuestionSelected("TimeRunOut!", false);
+                mListener.OnQuestionSelected(0, false);
 
             }
         };
@@ -92,7 +92,7 @@ public class SinglePlayerQuestionFragment extends Fragment {
     }
 
     public interface OnQuestionSelected {
-        void OnQuestionSelected(String question1, Boolean correct);
+        void OnQuestionSelected(int answerPosition, Boolean correct);
     }
 
 
@@ -118,7 +118,7 @@ public class SinglePlayerQuestionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 timer.cancel();
-                mListener.OnQuestionSelected("bla", question.getAnswers().get(0).isCorrect());
+                mListener.OnQuestionSelected(1, question.getAnswers().get(0).isCorrect());
             }
         });
 
@@ -126,7 +126,7 @@ public class SinglePlayerQuestionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 timer.cancel();
-                mListener.OnQuestionSelected("bla", question.getAnswers().get(0).isCorrect());
+                mListener.OnQuestionSelected(2, question.getAnswers().get(1).isCorrect());
             }
         });
 
@@ -134,7 +134,7 @@ public class SinglePlayerQuestionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 timer.cancel();
-                mListener.OnQuestionSelected("bla", question.getAnswers().get(0).isCorrect());
+                mListener.OnQuestionSelected(3, question.getAnswers().get(2).isCorrect());
             }
         });
 
@@ -142,7 +142,7 @@ public class SinglePlayerQuestionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 timer.cancel();
-                mListener.OnQuestionSelected("bla", question.getAnswers().get(0).isCorrect());
+                mListener.OnQuestionSelected(4, question.getAnswers().get(3).isCorrect());
             }
         });
 

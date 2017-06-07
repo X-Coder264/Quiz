@@ -10,13 +10,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import hr.tvz.quiz.model.Exam;
-import hr.tvz.quiz.model.Question;
 import hr.tvz.quiz.model.Statistic;
 import hr.tvz.quiz.model.Subject;
 import hr.tvz.quiz.model.User;
@@ -67,7 +64,8 @@ public class PlayModeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PlayModeActivity.this, SinglePlayerActivity.class);
-                intent.putExtra("EXAM", subject.getExam().get(spinnerColoquium.getSelectedItemPosition()));
+                intent.putExtra("EXAM", spinnerColoquium.getSelectedItemPosition());
+                intent.putExtra("SUBJECT", subject);
 
                 int numberOfQuestions=0;
                 if (spinnerQuestionNumber.getSelectedItem().toString().equals("All"))
@@ -104,36 +102,17 @@ public class PlayModeActivity extends AppCompatActivity {
         int userId = user.getId();
         String userQuestions = "";
 
-        for (Exam exam : subject.getExam()) {
-            for (Question question : exam.getQuestions()) {
-                questionsId.add(question.getId());
-                questionCounter++;
-            }
-        }
 
         for (Statistic statistic : user.getStatistics()) {
-            if (statistic.getUserId() == userId && statistic.getSubjectId() == subjectId) {
-                System.out.println(statistic.getQuestionsUser());
+            if (statistic.getSubjectId() == subjectId) {
+                questionCounter = subject.getQuestionCounter();
                 userQuestions = statistic.getQuestionsUser();
                 break;
             }
         }
 
-        String number = "";
-        for (int i=0; i< userQuestions.length(); i++){
-            if (userQuestions.charAt(i) == ','){
-                questionsUser.add(Integer.parseInt(number));
-                questionUserCounter++;
-                number = "";
-                i++;
-            }
-            else{
-                number += userQuestions.charAt(i);
-            }
-        }
-
-        questionUserCounter++;
-        questionsUser.add(Integer.parseInt(number));
+        String[] data = userQuestions.split(", ");
+        questionUserCounter = data.length;
 
         this.questionCounter = questionCounter;
         this.questionUserCounter = questionUserCounter;

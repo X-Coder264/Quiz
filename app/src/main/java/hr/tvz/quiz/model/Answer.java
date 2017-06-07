@@ -13,7 +13,7 @@ public class Answer implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public int id;
+    public Integer id;
     @SerializedName("answer")
     @Expose
     public String answer;
@@ -22,7 +22,7 @@ public class Answer implements Serializable {
     public boolean correct;
     @SerializedName("question_id")
     @Expose
-    public int questionId;
+    public Integer questionId;
 
     /**
      * No args constructor for use in serialization
@@ -38,7 +38,7 @@ public class Answer implements Serializable {
      * @param correct
      * @param answer
      */
-    public Answer(int id, String answer, boolean correct, int questionId) {
+    public Answer(Integer id, String answer, boolean correct, Integer questionId) {
         super();
         this.id = id;
         this.answer = answer;

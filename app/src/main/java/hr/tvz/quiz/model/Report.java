@@ -12,13 +12,13 @@ public class Report implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public int id;
-    @SerializedName("complaint")
+    public Integer id;
+    @SerializedName("complaInteger")
     @Expose
-    public String complaint;
+    public String complaInteger;
     @SerializedName("question_id")
     @Expose
-    public int questionId;
+    public Integer questionId;
 
     /**
      * No args constructor for use in serialization
@@ -31,12 +31,12 @@ public class Report implements Serializable {
      *
      * @param id
      * @param questionId
-     * @param complaint
+     * @param complaInteger
      */
-    public Report(int id, String complaint, int questionId) {
+    public Report(Integer id, String complaInteger, Integer questionId) {
         super();
         this.id = id;
-        this.complaint = complaint;
+        this.complaInteger = complaInteger;
         this.questionId = questionId;
     }
 

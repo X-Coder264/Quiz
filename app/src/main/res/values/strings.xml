@@ -20,6 +20,7 @@
     <string name="action_forgotten_password">Zaboravili ste lozinku?</string>
     <string name="action_existing_account">Posjedujem korisnički račun</string>
     <string name="action_report_question">Prijavi</string>
+    <string name="action_view_reported_question">Pregled</string>
     <string name="student_title">Početnik</string>
     <string name="student_name">Pero Perić</string>
     <string name="student_semester">1. godina</string>
@@ -39,5 +40,6 @@
     <string name="text_single_player_result">Broj točnih odgovora:</string>
     <string name="number_correct_answer_single_player_end_result">9/10</string>
     <string name="hint_enter_report">Upišite primjedbu na pitanje...</string>
-
+    <string name="action_accept_report">Odobri</string>
+    <string name="action_reject_report">Odbaci</string>
 </resources>

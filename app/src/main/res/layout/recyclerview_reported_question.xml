@@ -17,18 +17,18 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView_question"
-            android:layout_width="160dp"
+            android:id="@+id/textView_user_name"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="6dp"
             android:gravity="center|center_vertical"
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/textView_answer"
-            android:layout_width="100dp"
+            android:id="@+id/textView_reported_question"
+            android:layout_width="157dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="6dp"
+            android:layout_marginRight="5dp"
             android:gravity="center|center_vertical"
             android:textAlignment="center" />
 
@@ -42,7 +42,7 @@
                 android:id="@+id/button_report_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/action_report_question" />
+                android:text="@string/action_view_reported_question" />
 
         </LinearLayout>
     </LinearLayout>

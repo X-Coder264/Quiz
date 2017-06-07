@@ -1,25 +1,27 @@
 package hr.tvz.quiz.model;
 
 import java.io.Serializable;
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
 
 @Data
-public class Exam implements Serializable
-{
+public class Exam implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public Integer id;
+    public int id;
     @SerializedName("name")
     @Expose
     public String name;
     @SerializedName("subject_id")
     @Expose
-    public Integer subjectId;
-    private final static long serialVersionUID = 2214809548773954574L;
+    public int subjectId;
+    @SerializedName("questions")
+    @Expose
+    public List<Question> questions = null;
 
     /**
      * No args constructor for use in serialization
@@ -33,12 +35,14 @@ public class Exam implements Serializable
      * @param id
      * @param subjectId
      * @param name
+     * @param questions
      */
-    public Exam(Integer id, String name, Integer subjectId) {
+    public Exam(int id, String name, int subjectId, List<Question> questions) {
         super();
         this.id = id;
         this.name = name;
         this.subjectId = subjectId;
+        this.questions = questions;
     }
 
 }

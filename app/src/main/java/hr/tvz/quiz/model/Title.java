@@ -12,13 +12,13 @@ public class Title implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public Integer id;
+    public int id;
     @SerializedName("name")
     @Expose
     public String name;
-    @SerializedName("poIntegers")
+    @SerializedName("points")
     @Expose
-    public Integer poIntegers;
+    public int points;
 
     /**
      * No args constructor for use in serialization
@@ -31,13 +31,13 @@ public class Title implements Serializable {
      *
      * @param id
      * @param name
-     * @param poIntegers
+     * @param points
      */
-    public Title(Integer id, String name, Integer poIntegers) {
+    public Title(int id, String name, int points) {
         super();
         this.id = id;
         this.name = name;
-        this.poIntegers = poIntegers;
+        this.points = points;
     }
 
 }

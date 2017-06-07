@@ -1,13 +1,6 @@
 package hr.tvz.quiz.rest;
 
-import android.support.annotation.Nullable;
-
-import hr.tvz.quiz.model.Game;
-import hr.tvz.quiz.model.Question;
-import hr.tvz.quiz.model.Statistic;
 import hr.tvz.quiz.model.User;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import hr.tvz.quiz.model.Course;
@@ -21,7 +14,6 @@ import rx.Observable;
 
 public interface APIInterface {
 
-    //User
     @GET("user/{id}")
     Call<User> getUser(@Path("id") int id);
 
@@ -31,24 +23,6 @@ public interface APIInterface {
     @POST("user")
     Call<User> createUser(@Body User user);
 
-    //Questions
-    @GET("question/random/{examId}")
-    Call <ArrayList<Question>> get10RandomQuestionsForExam(@Path("examId") int examId);
-
-    @GET("question/all/{examId}")
-    Call <ArrayList<Question>> getAllQuestionsForExam(@Path("examId") int examId);
-
-    //Game
-    @POST("game")
-    @Nullable
-    Call<Game> postGame(@Body Game game);
-
-    //Statistics
-    @POST("statistic")
-    @Nullable
-    Call<Statistic> postStatistic(@Body Statistic statistic);
-
-    //Course
     @GET("course")
     Call<List<Course>> getCourses();
 

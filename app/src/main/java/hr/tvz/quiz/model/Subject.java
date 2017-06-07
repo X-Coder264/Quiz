@@ -8,25 +8,26 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
-public class Subject implements Serializable
-{
+public class Subject implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public Integer id;
+    public int id;
+    @SerializedName("semester")
+    @Expose
+    public int semester;
     @SerializedName("name")
     @Expose
     public String name;
-    @SerializedName("semester")
-    @Expose
-    public Integer semester;
-    @SerializedName("question_counter")
-    @Expose
-    public Integer questionCounter;
     @SerializedName("exam")
     @Expose
     public List<Exam> exam = null;
-    private final static long serialVersionUID = 2222180988070014151L;
+    @SerializedName("statistics")
+    @Expose
+    public List<Statistic> statistics = null;
+    @SerializedName("games")
+    @Expose
+    public List<Game> games = null;
 
     /**
      * No args constructor for use in serialization
@@ -38,18 +39,19 @@ public class Subject implements Serializable
     /**
      *
      * @param id
+     * @param games
      * @param name
      * @param exam
-     * @param semester
-     * @param questionCounter
+     * @param statistics
      */
-    public Subject(Integer id, String name, Integer semester, List<Exam> exam, Integer questionCounter) {
+    public Subject(int id, String name, int semester, List<Exam> exam, List<Statistic> statistics, List<Game> games) {
         super();
         this.id = id;
         this.name = name;
         this.semester = semester;
         this.exam = exam;
-        this.questionCounter = questionCounter;
+        this.statistics = statistics;
+        this.games = games;
     }
 
 }

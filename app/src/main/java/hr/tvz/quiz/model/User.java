@@ -1,19 +1,19 @@
 package hr.tvz.quiz.model;
 
-import java.io.Serializable;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class User implements Serializable
-{
+public class User implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public Integer id;
+    public int id;
     @SerializedName("name")
     @Expose
     public String name;
@@ -25,29 +25,34 @@ public class User implements Serializable
     public String password;
     @SerializedName("image")
     @Expose
-    public Object image;
+    public String image;
     @SerializedName("semester")
     @Expose
-    public Integer semester;
+    public int semester;
     @SerializedName("role_id")
     @Expose
-    public Integer roleId;
+    public int roleId;
     @SerializedName("title_id")
     @Expose
-    public Integer titleId;
+    public int titleId;
     @SerializedName("course_id")
     @Expose
-    public Integer courseId;
+    public int courseId;
     @SerializedName("statistics")
     @Expose
     public List<Statistic> statistics = null;
+    @SerializedName("game1")
+    @Expose
+    public List<Game> game1 = null;
+    @SerializedName("game2")
+    @Expose
+    public List<Game> game2 = null;
     @SerializedName("role")
     @Expose
     public Role role;
     @SerializedName("title")
     @Expose
     public Title title;
-    private final static long serialVersionUID = -860853089365295463L;
 
     /**
      * No args constructor for use in serialization
@@ -58,20 +63,22 @@ public class User implements Serializable
 
     /**
      *
+     * @param game2
+     * @param image
+     * @param courseId
+     * @param password
+     * @param statistics
      * @param id
      * @param title
      * @param email
+     * @param game1
      * @param name
      * @param role
-     * @param image
-     * @param courseId
      * @param titleId
-     * @param password
-     * @param statistics
-     * @param roleId
      * @param semester
+     * @param roleId
      */
-    public User(Integer id, String name, String email, String password, Object image, Integer semester, Integer roleId, Integer titleId, Integer courseId, List<Statistic> statistics, Role role, Title title) {
+    public User(int id, String name, String email, String password, String image, int semester, int roleId, int titleId, int courseId, List<Statistic> statistics, List<Game> game1, List<Game> game2, Role role, Title title) {
         super();
         this.id = id;
         this.name = name;
@@ -83,8 +90,31 @@ public class User implements Serializable
         this.titleId = titleId;
         this.courseId = courseId;
         this.statistics = statistics;
+        this.game1 = game1;
+        this.game2 = game2;
         this.role = role;
         this.title = title;
+    }
+
+    /**
+     *
+     * @param name
+     * @param email
+     * @param password
+     * @param title_id
+     * @param course_id
+     * @param role_id
+     * @param semester
+     */
+    public User(String name, String email, String password, int title_id, int course_id, int role_id, int semester) {
+        super();
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.titleId = title_id;
+        this.courseId = course_id;
+        this.roleId = role_id;
+        this.semester = semester;
     }
 
     /**
@@ -105,7 +135,7 @@ public class User implements Serializable
      * @param email
      * @param role
      */
-    public User(Integer id, String name, String email, Integer role) {
+    public User(int id, String name, String email, int role) {
         super();
         this.id = id;
         this.name = name;

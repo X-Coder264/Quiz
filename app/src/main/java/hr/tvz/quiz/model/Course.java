@@ -12,7 +12,7 @@ public class Course implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public Integer id;
+    public int id;
     @SerializedName("name")
     @Expose
     public String name;
@@ -33,7 +33,7 @@ public class Course implements Serializable {
      * @param subjects
      * @param name
      */
-    public Course(Integer id, String name, List<Subject> subjects) {
+    public Course(int id, String name, List<Subject> subjects) {
         super();
         this.id = id;
         this.name = name;

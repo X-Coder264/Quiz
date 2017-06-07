@@ -1,7 +1,5 @@
 package hr.tvz.quiz.model;
 
-import android.support.annotation.Nullable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -14,22 +12,25 @@ public class Game implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public Integer id;
-    @SerializedName("user1_poIntegers")
+    public int id;
+    @SerializedName("score")
     @Expose
-    public Integer user1PoIntegers;
-    @SerializedName("user2_poIntegers")
+    public String score;
+    @SerializedName("user1_points")
     @Expose
-    public Integer user2PoIntegers;
+    public int user1Points;
+    @SerializedName("user2_points")
+    @Expose
+    public int user2Points;
     @SerializedName("subject_id")
     @Expose
-    public Integer subjectId;
+    public int subjectId;
     @SerializedName("user1_id")
     @Expose
-    public Integer user1Id;
+    public int user1Id;
     @SerializedName("user2_id")
     @Expose
-    public Integer user2Id;
+    public int user2Id;
 
     /**
      * No args constructor for use in serialization
@@ -41,27 +42,22 @@ public class Game implements Serializable {
     /**
      *
      * @param id
-     * @param user2PoIntegers
+     * @param user2Points
      * @param user1Id
      * @param user2Id
      * @param subjectId
-     * @param user1PoIntegers
+     * @param score
+     * @param user1Points
      */
-    public Game(Integer id, Integer user1PoIntegers, Integer user2PoIntegers, Integer subjectId, Integer user1Id, Integer user2Id) {
+    public Game(int id, String score, int user1Points, int user2Points, int subjectId, int user1Id, int user2Id) {
         super();
         this.id = id;
-        this.user1PoIntegers = user1PoIntegers;
-        this.user2PoIntegers = user2PoIntegers;
+        this.score = score;
+        this.user1Points = user1Points;
+        this.user2Points = user2Points;
         this.subjectId = subjectId;
         this.user1Id = user1Id;
         this.user2Id = user2Id;
-    }
-
-    public Game(Integer user1PoIntegers, Integer subjectId, Integer user1Id) {
-        super();
-        this.user1PoIntegers = user1PoIntegers;
-        this.subjectId = subjectId;
-        this.user1Id = user1Id;
     }
 
 }

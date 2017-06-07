@@ -13,7 +13,7 @@ public class Role implements Serializable {
 
     @SerializedName("id")
     @Expose
-    public Integer id;
+    public int id;
     @SerializedName("name")
     @Expose
     public String name;
@@ -30,7 +30,7 @@ public class Role implements Serializable {
      * @param id
      * @param name
      */
-    public Role(Integer id, String name) {
+    public Role(int id, String name) {
         super();
         this.id = id;
         this.name = name;

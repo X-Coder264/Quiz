@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SinglePlayerActivity"/>
-        <activity android:name=".GameEndActivity"/>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".PlayModeActivity"></activity>

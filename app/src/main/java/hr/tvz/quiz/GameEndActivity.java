@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import hr.tvz.quiz.adapter.QuestionsAdapter;
 import hr.tvz.quiz.model.Game;
 import hr.tvz.quiz.model.Question;
 import hr.tvz.quiz.model.Statistic;
@@ -30,6 +35,9 @@ public class GameEndActivity extends AppCompatActivity {
     private Button buttonFinish;
 
     private List<Question> questions;
+    private RecyclerView recycleReviewList;
+    private QuestionsAdapter mAdapter;
+
     private User user;
     private Subject subject;
     private ArrayList<Integer> answeerPosition;
@@ -64,6 +72,8 @@ public class GameEndActivity extends AppCompatActivity {
 
         tCorrect.setText(String.valueOf(correctCounter) + " / "+ questionsCounter);
 
+        recycleReviewList = (RecyclerView) findViewById(R.id.recyclerView_question_list);
+
         buttonPlayAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +88,14 @@ public class GameEndActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        //Recycler view
+        mAdapter = new QuestionsAdapter(questions, this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recycleReviewList.setLayoutManager(mLayoutManager);
+        recycleReviewList.setItemAnimator(new DefaultItemAnimator());
+        recycleReviewList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recycleReviewList.setAdapter(mAdapter);
 
     }
 

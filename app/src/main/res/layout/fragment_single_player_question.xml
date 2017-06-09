@@ -43,12 +43,13 @@
             <TextView
                 android:id="@+id/textView_single_player_question"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
                 android:gravity="center_vertical"
                 android:text="@string/single_player_question"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <Button
@@ -56,7 +57,7 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:textStyle="bold" />
 
             <Button
@@ -64,7 +65,7 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:textStyle="bold" />
 
             <Button
@@ -72,7 +73,7 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:textStyle="bold" />
 
             <Button
@@ -80,7 +81,7 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:textStyle="bold" />
 
         </LinearLayout>

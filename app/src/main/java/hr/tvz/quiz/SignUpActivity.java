@@ -145,7 +145,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             // perform the user register attempt.
             showProgress(true);
 
-            user = new User(name, email, password, title_id, course_id, role_id, semester);
+            user = new User(name, email, password, Integer.valueOf(title_id), Integer.valueOf(course_id), Integer.valueOf(role_id), Integer.valueOf(semester));
             Call<User> call = client.getApiService().createUser(user);
             call.enqueue(new Callback<User>() {
                 @Override

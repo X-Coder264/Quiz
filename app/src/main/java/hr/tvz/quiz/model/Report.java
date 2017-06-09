@@ -13,9 +13,9 @@ public class Report implements Serializable {
     @SerializedName("id")
     @Expose
     public Integer id;
-    @SerializedName("complaInteger")
+    @SerializedName("complaint")
     @Expose
-    public String complaInteger;
+    public String complaint;
     @SerializedName("question_id")
     @Expose
     public Integer questionId;
@@ -31,12 +31,12 @@ public class Report implements Serializable {
      *
      * @param id
      * @param questionId
-     * @param complaInteger
+     * @param complaint
      */
-    public Report(Integer id, String complaInteger, Integer questionId) {
+    public Report(Integer id, String complaint, Integer questionId) {
         super();
         this.id = id;
-        this.complaInteger = complaInteger;
+        this.complaint = complaint;
         this.questionId = questionId;
     }
 

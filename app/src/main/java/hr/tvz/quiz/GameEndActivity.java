@@ -3,6 +3,7 @@ package hr.tvz.quiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hr.tvz.quiz.adapter.QuestionsAdapter;
+import hr.tvz.quiz.fragments.ReportQuestionFragment;
 import hr.tvz.quiz.model.Game;
 import hr.tvz.quiz.model.Question;
 import hr.tvz.quiz.model.Statistic;
@@ -40,9 +42,10 @@ public class GameEndActivity extends AppCompatActivity {
 
     private User user;
     private Subject subject;
-    private ArrayList<Integer> answeerPosition;
+    private ArrayList<Integer> answerPosition;
     private int correctCounter, questionsCounter;
     private APIClient client = APIClient.getInstance();
+    public int examId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,9 +56,10 @@ public class GameEndActivity extends AppCompatActivity {
         this.questions = (ArrayList<Question>) extra.getSerializable("QUESTIONS");
         this.user = (User) getIntent().getSerializableExtra("USER");
         this.subject = (Subject) getIntent().getSerializableExtra("SUBJECT");
-        this.answeerPosition = (ArrayList<Integer>) getIntent().getSerializableExtra("ANSWERS_POSITION");
+        this.answerPosition = (ArrayList<Integer>) getIntent().getSerializableExtra("ANSWERS_POSITION");
         this.correctCounter = (Integer) getIntent().getSerializableExtra("CORRECT");
         this.questionsCounter = (Integer) getIntent().getSerializableExtra("QUESTION_NUMBER");
+        this.examId = (Integer) getIntent().getSerializableExtra("EXAM");
 
         updateDatabase(savedInstanceState);
         initializeViewElements();
@@ -77,7 +81,12 @@ public class GameEndActivity extends AppCompatActivity {
         buttonPlayAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(GameEndActivity.this, SinglePlayerActivity.class);
+                intent.putExtra("EXAM", examId);
+                intent.putExtra("SUBJECT", subject);
+                intent.putExtra("QUESTION_NUMBER", questions.size());  //ToDo: Insert new questions on play again not the same
+                intent.putExtra("USER", user);
+                startActivity(intent);
                 finish();
             }
         });
@@ -191,11 +200,35 @@ public class GameEndActivity extends AppCompatActivity {
                 if (check)
                     newQuestions += temp.getId() + ", ";
             }
+
+            if (!(newQuestions.isEmpty()))
             newQuestions = newQuestions.substring(0, newQuestions.length() - 2);
+
             if (!(newQuestions.isEmpty()))
                 statistic.setQuestionsUser(statistic.getQuestionsUser() + ", " + newQuestions);
         }
 
         return statistic;
     }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0)
+            getFragmentManager().popBackStackImmediate();
+        else
+            super.onBackPressed();
+    }
+
+    /*
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        FragmentManager fm = getFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+    */
 }

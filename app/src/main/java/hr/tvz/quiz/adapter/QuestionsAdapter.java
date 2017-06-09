@@ -1,6 +1,9 @@
 package hr.tvz.quiz.adapter;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,17 +13,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import hr.tvz.quiz.GameEndActivity;
 import hr.tvz.quiz.R;
+import hr.tvz.quiz.fragments.ReportQuestionFragment;
+import hr.tvz.quiz.fragments.SinglePlayerQuestionFragment;
 import hr.tvz.quiz.model.Question;
-
-/**
- * Created by Tomi PC on 8.6.2017..
- */
 
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyViewHolder> {
 
         private List<Question> questionList;
-        private Context c;
+        private GameEndActivity c;
+        private FragmentManager f_manager;
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
             public TextView question, answer1, answer2, answer3, answer4;
@@ -41,7 +44,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
 
         public QuestionsAdapter(List<Question> questionList, Context c) {
             this.questionList = questionList;
-            this.c = c;
+            this.c = (GameEndActivity)c;
         }
 
         @Override
@@ -54,7 +57,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
 
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
-            Question question = questionList.get(position);
+            final Question question = questionList.get(position);
 
             holder.question.setText(question.getQuestion());
 
@@ -67,6 +70,17 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
                 @Override
                 public void onClick(View v) {
 
+                    /*c.getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.activity_single_player_end_result, detailsFragment, "question1")
+                            .addToBackStack(null)
+                            .commit();*/
+
+                    c.getSupportFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack("reportFragment")
+                            .add(R.id.activity_single_player_end_result_root, ReportQuestionFragment.newInstance(question), "question")
+                            .commit();
                 }
             });
 

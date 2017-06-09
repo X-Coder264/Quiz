@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 
 import hr.tvz.quiz.model.Game;
 import hr.tvz.quiz.model.Question;
+import hr.tvz.quiz.model.Report;
 import hr.tvz.quiz.model.Statistic;
 import hr.tvz.quiz.model.User;
 
@@ -54,6 +55,10 @@ public interface APIInterface {
 
     @GET("course")
     Observable<List<Course>> getCoursesRx();
+
+    //Report
+    @POST("report")
+    Call<Report> postReport(@Body Report report);
 
 /*
     @GET("group/{id}/users")

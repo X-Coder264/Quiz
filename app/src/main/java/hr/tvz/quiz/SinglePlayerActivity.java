@@ -30,6 +30,7 @@ public class SinglePlayerActivity extends AppCompatActivity implements SinglePla
     private int questionCounter = 0;
     private int correctAnswers;
     private ArrayList<Integer> answersPosition = new ArrayList<>();
+    private int examId;
 
     private APIClient client = APIClient.getInstance();
 
@@ -42,7 +43,6 @@ public class SinglePlayerActivity extends AppCompatActivity implements SinglePla
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_player);
 
-        int examId;
         examId = (int) getIntent().getSerializableExtra("EXAM");
         this.subject = (Subject) getIntent().getSerializableExtra("SUBJECT");
         this.user = (User) getIntent().getSerializableExtra("USER");
@@ -130,6 +130,7 @@ public class SinglePlayerActivity extends AppCompatActivity implements SinglePla
         Intent intent = new Intent(SinglePlayerActivity.this, GameEndActivity.class);
         intent.putExtra("QUESTION_NUMBER", questionsCounter);
         intent.putExtra("USER", user);
+        intent.putExtra("EXAM", examId);
         intent.putExtra("SUBJECT", subject);
         intent.putExtra("CORRECT", correctCounter);
         intent.putExtra("QUESTIONS", bundle);

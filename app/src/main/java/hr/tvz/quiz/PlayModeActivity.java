@@ -45,6 +45,7 @@ public class PlayModeActivity extends AppCompatActivity {
 
         subject = (Subject) getIntent().getSerializableExtra("SUBJECT");
         user = (User) getIntent().getSerializableExtra("USER");
+
         calculateCoverage();
         initializeViewElements();
 

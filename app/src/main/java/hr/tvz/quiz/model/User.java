@@ -112,4 +112,15 @@ public class User implements Serializable
         this.email = email;
         this.roleId = role;
     }
+
+    public User(String name, String email, String password, Integer title, Integer courseId, Integer roleId, Integer semester) {
+        super();
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.titleId = title;
+        this.courseId = courseId;
+        this.roleId = roleId;
+        this.semester = semester;
+    }
 }

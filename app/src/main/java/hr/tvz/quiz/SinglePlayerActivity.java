@@ -32,6 +32,8 @@ public class SinglePlayerActivity extends AppCompatActivity implements SinglePla
     private ArrayList<Integer> answersPosition = new ArrayList<>();
     private int examId;
 
+    private boolean flag = true;
+
     private APIClient client = APIClient.getInstance();
 
     /**
@@ -63,8 +65,10 @@ public class SinglePlayerActivity extends AppCompatActivity implements SinglePla
         if (correct) correctAnswers++;
         answersPosition.add(answerPosition);
 
+
         questionCounter++;
         if (!( questionCounter < questionsNumber)) {
+            //flag = false;
             calleEndActivity(correctAnswers, questionsNumber, questions, answersPosition);
         }
         else {

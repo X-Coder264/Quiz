@@ -45,8 +45,8 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     private UserLocalStore userLocalStore;
     private List <Course> courses;
 
-    private int course_id;
-    private int semester;
+    private Integer course_id;
+    private Integer semester;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +98,8 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         String password = mPasswordView.getText().toString();
         String password_confirmation = mPasswordConfirmationView.getText().toString();
         // a new user gets the "User" role by default
-        int role_id = 1;
-        int title_id = 1;
+        Integer role_id = 1;
+        Integer title_id = 1;
 
         boolean cancel = false;
         View focusView = null;
@@ -145,7 +145,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             // perform the user register attempt.
             showProgress(true);
 
-            user = new User(name, email, password, Integer.valueOf(title_id), Integer.valueOf(course_id), Integer.valueOf(role_id), Integer.valueOf(semester));
+            user = new User(name, email, password, title_id, course_id, role_id, semester);
             Call<User> call = client.getApiService().createUser(user);
             call.enqueue(new Callback<User>() {
                 @Override

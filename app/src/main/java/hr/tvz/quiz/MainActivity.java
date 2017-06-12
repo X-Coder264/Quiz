@@ -3,6 +3,7 @@ package hr.tvz.quiz;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Button buttonPlay;
 
+    private UserLocalStore userLocalStore;
+
+    private Integer user_id;
+
 
     private View mProgressView;
     private View mLoginFormView;
@@ -65,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        userLocalStore = new UserLocalStore(this);
+
+        user = userLocalStore.getLoggedInUser();
+        user_id = user.getId();
         initializeViewElements();
         initializeUser();
 
@@ -97,9 +107,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     private void initializeUser() {
-        Call<User> call = client.getApiService().getUser(1);
+        Call<User> call = client.getApiService().getUser(user_id);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -192,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i=0; i<subjects.size();i++){
                     //System.out.println(subjects.get(i).getSemester() + " " + spinnerSemester.getSelectedItem());
                     if (subjects.get(i).getSemester() == Integer.parseInt(spinnerSemester.getSelectedItem().toString()))
-                    spinnerArraySubject.add(subjects.get(i).getName());
+                        spinnerArraySubject.add(subjects.get(i).getName());
                 }
                 subject = subjects.get(0);
                 setSubjectOnSpinnerChange();

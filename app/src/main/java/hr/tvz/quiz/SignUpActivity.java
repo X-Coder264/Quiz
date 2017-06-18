@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     private Spinner SemesterSpinner;
     private Spinner CourseSpinner;
     private Button mSignInButton;
+    private TextView loginTextView;
     private View mProgressView;
     private View mLoginFormView;
 
@@ -75,6 +77,18 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View view) {
                 attemptSignUp();
+            }
+        });
+
+        loginTextView = (TextView) findViewById(R.id.textView_login);
+
+        loginTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the SignUp activity
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

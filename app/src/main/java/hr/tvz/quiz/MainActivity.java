@@ -1,43 +1,35 @@
 package hr.tvz.quiz;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import hr.tvz.quiz.model.Course;
 import hr.tvz.quiz.model.Subject;
 import hr.tvz.quiz.model.User;
 import hr.tvz.quiz.rest.APIClient;
-import hr.tvz.quiz.util.Key;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.adapter.rxjava.HttpException;
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ImageView avatarImageView;
     private TextView tNameMain;
     private TextView tTitleMain;
     private TextView tSemesterMain;
@@ -50,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonPlay;
 
     private UserLocalStore userLocalStore;
-
-    private Integer user_id;
 
 
     private View mProgressView;
@@ -74,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         userLocalStore = new UserLocalStore(this);
 
         user = userLocalStore.getLoggedInUser();
-        user_id = user.getId();
+
         initializeViewElements();
         initializeUser();
 
@@ -95,7 +85,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initializeUser();
+    }
+
+
     private void initializeViewElements() {
+        avatarImageView = (ImageView) findViewById(R.id.imageView_student_image_main);
         tNameMain = (TextView) findViewById(R.id.textView_name_main);
         tTitleMain = (TextView) findViewById(R.id.textView_title_main);
         tSemesterMain = (TextView) findViewById(R.id.textView_semester_main);
@@ -108,30 +106,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeUser() {
-        Call<User> call = client.getApiService().getUser(user_id);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                int statusCode = response.code();
-                user = response.body();
-                if (statusCode == 200) {
-                    tNameMain.setText(user.getName());
-                    tTitleMain.setText(user.getTitle().getName());
-                    tSemesterMain.setText(user.getSemester() + ". godina");
+        if (user == null) {
+            Call<User> call = client.getApiService().getUser(user.getId());
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    int statusCode = response.code();
+                    if (statusCode == 200) {
+                        user = response.body();
+                        tNameMain.setText(user.getName());
+                        tTitleMain.setText(user.getTitle().getName());
+                        tSemesterMain.setText(user.getSemester() + ". godina");
 
-                    setSpinner(user.getSemester() - 1, Arrays.asList("1", "2", "3", "4", "5", "6"), spinnerSemester);
+                        setSpinner(user.getSemester() - 1, Arrays.asList("1", "2", "3", "4", "5", "6"), spinnerSemester);
 
-                    initializeCourses();
-                } else {
-                    System.out.println("Object not found");
+                        initializeCourses();
+                    } else {
+                        System.out.println("Object not found");
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.w("Tomislav", t.getCause());
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.w("Tomislav", t.getCause());
+                }
+            });
+        } else {
+            if (! user.getImage().equals("")) {
+                Glide.with(this).load(APIClient.getURL() + "resources/" + user.getId() + "/" + user.getImage()).into(avatarImageView);
             }
-        });
+            tNameMain.setText(user.getName());
+            //tTitleMain.setText(user.getTitle().getName());
+            tSemesterMain.setText(user.getSemester() + ". godina");
+
+            setSpinner(user.getSemester() - 1, Arrays.asList("1", "2", "3", "4", "5", "6"), spinnerSemester);
+
+            initializeCourses();
+        }
     }
 
     private void initializeCourses() {

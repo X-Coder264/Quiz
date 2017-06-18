@@ -19,7 +19,11 @@ public class UserLocalStore {
         userLocalDatabaseEditor.putInt("id", user.getId());
         userLocalDatabaseEditor.putString("username", user.getName());
         userLocalDatabaseEditor.putString("email", user.getEmail());
-        userLocalDatabaseEditor.putInt("role", user.getRoleId());
+        userLocalDatabaseEditor.putInt("role_id", user.getRoleId());
+        userLocalDatabaseEditor.putInt("title_id", user.getTitleId());
+        userLocalDatabaseEditor.putInt("course_id", user.getCourseId());
+        userLocalDatabaseEditor.putInt("semester", user.getSemester());
+        userLocalDatabaseEditor.putString("image", user.getImage());
         userLocalDatabaseEditor.commit();
     }
 
@@ -43,8 +47,12 @@ public class UserLocalStore {
         int id = userLocalDatabase.getInt("id", 0);
         String username = userLocalDatabase.getString("username", "");
         String email = userLocalDatabase.getString("email", "");
-        int role = userLocalDatabase.getInt("role", 1);
+        int role_id = userLocalDatabase.getInt("role_id", 1);
+        int title_id = userLocalDatabase.getInt("title_id", 1);
+        int course_id = userLocalDatabase.getInt("course_id", 1);
+        int semester = userLocalDatabase.getInt("semester", 1);
+        String image = userLocalDatabase.getString("image", "");
 
-        return new User(id, username, email, role);
+        return new User(id, username, email, role_id, title_id, course_id, semester, image);
     }
 }

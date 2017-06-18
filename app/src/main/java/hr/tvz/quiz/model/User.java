@@ -1,9 +1,10 @@
 package hr.tvz.quiz.model;
 
-import java.io.Serializable;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -25,7 +26,7 @@ public class User implements Serializable
     public String password;
     @SerializedName("image")
     @Expose
-    public Object image;
+    public String image;
     @SerializedName("semester")
     @Expose
     public Integer semester;
@@ -71,7 +72,7 @@ public class User implements Serializable
      * @param roleId
      * @param semester
      */
-    public User(Integer id, String name, String email, String password, Object image, Integer semester, Integer roleId, Integer titleId, Integer courseId, List<Statistic> statistics, Role role, Title title) {
+    public User(Integer id, String name, String email, String password, String image, Integer semester, Integer roleId, Integer titleId, Integer courseId, List<Statistic> statistics, Role role, Title title) {
         super();
         this.id = id;
         this.name = name;
@@ -98,19 +99,17 @@ public class User implements Serializable
         this.password = password;
     }
 
-    /**
-     *
-     * @param id
-     * @param name
-     * @param email
-     * @param role
-     */
-    public User(Integer id, String name, String email, Integer role) {
+
+    public User(Integer id, String name, String email, Integer role_id, Integer title_id, Integer course_id, Integer semester, String image) {
         super();
         this.id = id;
         this.name = name;
         this.email = email;
-        this.roleId = role;
+        this.roleId = role_id;
+        this.titleId = title_id;
+        this.courseId = course_id;
+        this.semester = semester;
+        this.image = image;
     }
 
     public User(String name, String email, String password, Integer title, Integer courseId, Integer roleId, Integer semester) {

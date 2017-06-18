@@ -1,0 +1,112 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            tools:context="hr.tvz.quiz.EditProfileActivity">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/EmailEditTextEditProfile"
+                android:hint="Email"
+                android:textColor="#000000"
+                android:fontFamily="sans-serif-medium"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:enabled="false"
+                android:focusable="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:visibility="invisible"
+                android:fontFamily="sans-serif-medium"
+                android:layout_below="@id/EmailEditTextEditProfile"
+                android:layout_toRightOf="@+id/ChoosePictureButton"
+                android:layout_toEndOf="@+id/ChoosePictureButton"
+                android:layout_marginLeft="42dp"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="72dp" />
+
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Uslikaj sliku kamerom"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:id="@+id/TakePictureButton"
+                android:layout_below="@id/textView5"
+                android:layout_toLeftOf="@id/textView5"
+                android:layout_toStartOf="@id/textView5"
+                android:layout_marginTop="10dp"
+                android:padding="12dp" />
+
+            <ImageView
+                app:srcCompat="@mipmap/ic_launcher"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="fitXY"
+                android:id="@+id/ProfilePhotoImageViewEditProfile"
+                android:layout_alignTop="@id/TakePictureButton"
+                android:layout_alignLeft="@id/textView5"
+                android:layout_alignStart="@id/textView5" />
+
+
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Odaberi sliku s telefona"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:id="@+id/ChoosePictureButton"
+                android:layout_below="@id/TakePictureButton"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:padding="12dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spremi promjene"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:id="@+id/EditProfileButton"
+                android:padding="12dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@id/ProfilePhotoImageViewEditProfile"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

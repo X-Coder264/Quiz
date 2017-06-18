@@ -1,24 +1,25 @@
 package hr.tvz.quiz.rest;
 
+import android.database.Observable;
 import android.support.annotation.Nullable;
-
-import hr.tvz.quiz.model.Game;
-import hr.tvz.quiz.model.Question;
-import hr.tvz.quiz.model.Report;
-import hr.tvz.quiz.model.Statistic;
-import hr.tvz.quiz.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import hr.tvz.quiz.model.Course;
+import hr.tvz.quiz.model.Game;
+import hr.tvz.quiz.model.Question;
+import hr.tvz.quiz.model.Report;
+import hr.tvz.quiz.model.Statistic;
+import hr.tvz.quiz.model.User;
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
-import rx.Observable;
 
 public interface APIInterface {
 
@@ -31,6 +32,13 @@ public interface APIInterface {
 
     @POST("user")
     Call<User> createUser(@Body User user);
+
+    @Multipart
+    @POST("user/{id}/uploadImage")
+    Call<User> updateUserPhoto(
+            @Path("id") int id,
+            @Part MultipartBody.Part image
+    );
 
     //Questions
     @GET("question/random/{examId}")

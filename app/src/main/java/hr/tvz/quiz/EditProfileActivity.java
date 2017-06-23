@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,13 +16,16 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -37,6 +41,7 @@ import java.util.Locale;
 
 import hr.tvz.quiz.model.User;
 import hr.tvz.quiz.rest.APIClient;
+import hr.tvz.quiz.util.Drawer;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -67,10 +72,17 @@ public class EditProfileActivity extends AppCompatActivity {
     private Uri file_uri;
     private Bitmap bitmap;
 
+    //Drawer
+    private ListView mDrawerList;
+    private DrawerLayout mDrawerLayout;
+    private Drawer drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+
+        initializeDrawer();
 
         userLocalStore = new UserLocalStore(this);
         user = userLocalStore.getLoggedInUser();
@@ -394,5 +406,36 @@ public class EditProfileActivity extends AppCompatActivity {
         startActivity(intent);
 
         super.onBackPressed();
+    }
+
+    private void initializeDrawer(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        mDrawerList = (ListView)findViewById(R.id.left_drawer);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawer = new Drawer(mDrawerList, mDrawerLayout, this);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawer.getmDrawerToggle().onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawer.getmDrawerToggle().syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawer.getmDrawerToggle().onConfigurationChanged(newConfig);
     }
 }

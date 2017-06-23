@@ -8,4 +8,10 @@
     <color name="white">#ffffff</color>
     <color name="green">#66bb6a</color>
     <color name="red">#e53935</color>
+
+    <!--Drawer-->
+    <color name="colorDrawerPrimary">#d32f2f</color>
+    <color name="colorDrawerPrimaryDark">#c72c2c</color>
+    <color name="colorDrawerAccent">#FFFFFF</color>
+
 </resources>

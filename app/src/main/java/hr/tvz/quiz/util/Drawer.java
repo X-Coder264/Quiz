@@ -96,7 +96,7 @@ public class Drawer {
                         userLocalStore.setUserLoggedIn(false);
                         userLocalStore.clearUserData();
                         intent = new Intent(c, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         c.startActivity(intent);
                         activity.finish();
                         break;

@@ -5,13 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import hr.tvz.quiz.EditProfileActivity;
+import hr.tvz.quiz.LoginActivity;
 import hr.tvz.quiz.MainActivity;
 import hr.tvz.quiz.R;
 import hr.tvz.quiz.SignUpActivity;
@@ -93,11 +93,12 @@ public class Drawer {
                         activity.finish();
                         break;*/
                     case "Odjava":
-                        /*intent = new Intent(c, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        userLocalStore.setUserLoggedIn(false);
+                        userLocalStore.clearUserData();
+                        intent = new Intent(c, LoginActivity.class);
                         c.startActivity(intent);
                         activity.finish();
-                        break;*/
+                        break;
                     case "Korisnici":
                         /*intent = new Intent(c, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

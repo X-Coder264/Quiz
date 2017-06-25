@@ -21,6 +21,7 @@
     <string name="action_existing_account">Posjedujem korisnički račun</string>
     <string name="action_report_question">Prijavi</string>
     <string name="action_view_reported_question">Pregled</string>
+    <string name="action_add_question">Dodaj pitanje</string>
     <string name="student_title">Početnik</string>
     <string name="student_name">Pero Perić</string>
     <string name="student_semester">1. godina</string>

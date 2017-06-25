@@ -33,7 +33,8 @@
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".ReportedQuestionsActivity" />
         <activity android:name=".AdminReportedQuestionsActivity" />
-        <activity android:name=".AdminReportedQuestionActivity"></activity>
+        <activity android:name=".AdminReportedQuestionActivity" />
+        <activity android:name=".AddQuestionActivity"></activity>
     </application>
 
 </manifest>

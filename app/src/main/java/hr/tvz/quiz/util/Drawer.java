@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import hr.tvz.quiz.AddQuestionActivity;
 import hr.tvz.quiz.AdminReportedQuestionsActivity;
 import hr.tvz.quiz.EditProfileActivity;
 import hr.tvz.quiz.LoginActivity;
@@ -88,11 +89,11 @@ public class Drawer {
                         activity.finish();
                         break;*/
                     case "Dodaj pitanje":
-                        /*intent = new Intent(c, MainActivity.class);
+                        intent = new Intent(c, AddQuestionActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         c.startActivity(intent);
                         activity.finish();
-                        break;*/
+                        break;
                     case "Odjava":
                         userLocalStore.setUserLoggedIn(false);
                         userLocalStore.clearUserData();
@@ -117,7 +118,6 @@ public class Drawer {
                         intent = new Intent(c, AdminReportedQuestionsActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         c.startActivity(intent);
-                        activity.finish();
                         break;
                     case "Prijava":
                         intent = new Intent(c, SignUpActivity.class);

@@ -51,6 +51,9 @@ public interface APIInterface {
     @GET("question/reports")
     Call <ArrayList<Question>> getQuestionWhichHaveReports();
 
+    @POST("question")
+    Call <Question> createQuestion(@Body Question question);
+
     @PUT("question/{id}")
     Call <Question> updateQuestion(@Path("id") int id, @Body Question question);
 

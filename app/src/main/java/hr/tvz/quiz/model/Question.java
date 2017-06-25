@@ -1,9 +1,10 @@
 package hr.tvz.quiz.model;
 
-import java.io.Serializable;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -47,6 +48,19 @@ public class Question implements Serializable {
         this.question = question;
         this.examId = examId;
         this.reports = reports;
+        this.answers = answers;
+    }
+
+    /**
+     *
+     * @param answers
+     * @param examId
+     * @param question
+     */
+    public Question(String question, Integer examId, List<Answer> answers) {
+        super();
+        this.question = question;
+        this.examId = examId;
         this.answers = answers;
     }
 

@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class Answer implements Serializable {
@@ -44,6 +43,17 @@ public class Answer implements Serializable {
         this.answer = answer;
         this.correct = correct;
         this.questionId = questionId;
+    }
+
+    /**
+     *
+     * @param correct
+     * @param answer
+     */
+    public Answer(String answer, boolean correct) {
+        super();
+        this.answer = answer;
+        this.correct = correct;
     }
 
 }

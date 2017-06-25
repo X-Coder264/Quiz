@@ -1,0 +1,236 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="1">
+
+        <ScrollView
+            android:id="@+id/scrollView_main_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_semester_add_question"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:dropDownWidth="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_course_add_question"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:dropDownWidth="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_subject_add_question"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:dropDownWidth="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_exam_add_question"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:dropDownWidth="match_parent" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/EditText_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textAlignment="center"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/EditText_question_answer_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="3dp"
+                        android:paddingTop="5dp"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox_question_answer_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:minHeight="20dp"
+                        android:layout_marginTop="15dp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/EditText_question_answer_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="3dp"
+                        android:paddingTop="5dp"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox_question_answer_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:minHeight="20dp"
+                        android:layout_marginTop="15dp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/EditText_question_answer_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="3dp"
+                        android:paddingTop="5dp"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox_question_answer_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:minHeight="20dp"
+                        android:layout_marginTop="15dp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/EditText_question_answer_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="3dp"
+                        android:paddingTop="5dp"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox_question_answer_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:minHeight="20dp"
+                        android:layout_marginTop="15dp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_add_question"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/action_add_question"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    <ListView android:id="@+id/left_drawer"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:background="#ffffff"/>
+
+</android.support.v4.widget.DrawerLayout>

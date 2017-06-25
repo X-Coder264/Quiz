@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -16,13 +16,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView_user_name"
+       <!--<TextView
+            android:id="@+id/textView_admin_user_name"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_marginRight="6dp"
             android:gravity="center|center_vertical"
-            android:textAlignment="center" />
+            android:textAlignment="center" />-->
 
         <TextView
             android:id="@+id/textView_reported_question"
@@ -39,7 +39,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button_report_question"
+                android:id="@+id/button_see_report_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/action_view_reported_question" />

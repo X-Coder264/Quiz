@@ -18,6 +18,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -46,6 +47,12 @@ public interface APIInterface {
 
     @GET("question/all/{examId}")
     Call <ArrayList<Question>> getAllQuestionsForExam(@Path("examId") int examId);
+
+    @GET("question/reports")
+    Call <ArrayList<Question>> getQuestionWhichHaveReports();
+
+    @PUT("question/{id}")
+    Call <Question> updateQuestion(@Path("id") int id, @Body Question question);
 
     //Game
     @POST("game")

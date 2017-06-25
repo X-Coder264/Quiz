@@ -75,10 +75,12 @@ public class AdminReportedQuestionActivity extends AppCompatActivity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayout1);
 
         for (Report item : question.getReports()) {
-            TextView report = new TextView(this);
-            report.setText(item.getComplaint());
-            report.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-            layout.addView(report);
+            if (item.getResolved() == 0) {
+                TextView report = new TextView(this);
+                report.setText(item.getComplaint());
+                report.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+                layout.addView(report);
+            }
         }
 
         solveReportButton.setOnClickListener(new View.OnClickListener() {

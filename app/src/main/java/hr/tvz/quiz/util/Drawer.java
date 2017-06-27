@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import hr.tvz.quiz.AddQuestionActivity;
 import hr.tvz.quiz.AdminReportedQuestionsActivity;
@@ -19,6 +20,10 @@ import hr.tvz.quiz.R;
 import hr.tvz.quiz.SignUpActivity;
 import hr.tvz.quiz.UserLocalStore;
 import hr.tvz.quiz.model.User;
+import hr.tvz.quiz.rest.APIClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Drawer {
 
@@ -34,6 +39,7 @@ public class Drawer {
 
     private UserLocalStore userLocalStore;
     private User user;
+    private APIClient client = APIClient.getInstance();
 
 
     public Drawer(ListView mDrawerList, DrawerLayout mDrawerLayout,  Context c) {
@@ -95,12 +101,7 @@ public class Drawer {
                         activity.finish();
                         break;
                     case "Odjava":
-                        userLocalStore.setUserLoggedIn(false);
-                        userLocalStore.clearUserData();
-                        intent = new Intent(c, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        c.startActivity(intent);
-                        activity.finish();
+                        logout();
                         break;
                     case "Korisnici":
                         /*intent = new Intent(c, MainActivity.class);
@@ -155,5 +156,32 @@ public class Drawer {
 
     public DrawerLayout getmDrawerLayout() {
         return mDrawerLayout;
+    }
+
+    private void logout() {
+        Call<User> call = client.getApiService().logout(user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.code() == 200) {
+                    user = response.body();
+                    userLocalStore.setUserLoggedIn(false);
+                    userLocalStore.clearUserData();
+                    Toast.makeText(c, "You have successfully logged out.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(c, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    c.startActivity(intent);
+                    activity.finish();
+                } else {
+                    Toast.makeText(c, "An error happened. Please try again later.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(c, "An error happened. Please try again later.", Toast.LENGTH_LONG).show();
+                System.out.println(t.toString());
+            }
+        });
     }
 }

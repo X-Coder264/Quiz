@@ -31,6 +31,9 @@ public interface APIInterface {
     @POST("/user/login")
     Call<User> login(@Body User user);
 
+    @POST("/user/logout")
+    Call<User> logout(@Body User user);
+
     @POST("user")
     Call<User> createUser(@Body User user);
 

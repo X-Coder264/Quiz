@@ -6,12 +6,15 @@
     <string name="prompt_email">E-mail adresa</string>
     <string name="prompt_password">Lozinka</string>
     <string name="prompt_repeat_password">Ponovite lozinku</string>
+    <string name="prompt_current_password">Trenutna lozinka</string>
     <string name="action_login">Prijava</string>
     <string name="action_registration">Registracija</string>
     <string name="action_play">Igraj</string>
     <string name="action_single_player">Jedan igrač</string>
     <string name="action_multi_player">Dva igrača</string>
     <string name="action_send_report">Pošalji prijavu</string>
+    <string name="action_view_statistics">Pregled statistike</string>
+    <string name="action_change_password">Promijeni lozinku</string>
     <string name="error_invalid_email">Morate unijeti e-mail adresu s TVZ domenom.</string>
     <string name="error_invalid_password">Lozinka je prekratka (minimalno 7 znakova).</string>
     <string name="error_incorrect_password">Lozinka je netočna</string>
@@ -104,6 +107,9 @@
         <item>Verifikacija pitanja</item>
         <item>Prijave</item>
     </string-array>
+    <string name="title_activity_tab">Quiz</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
     <!--
     <array name="nav_drawer_icons">

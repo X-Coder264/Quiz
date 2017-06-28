@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +22,7 @@ import hr.tvz.quiz.model.Subject;
 import hr.tvz.quiz.model.User;
 
 
-public class PlayModeActivity extends AppCompatActivity {
+public class PlayModeActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     private TextView tName;
     private TextView tCoverage;
@@ -48,8 +51,29 @@ public class PlayModeActivity extends AppCompatActivity {
 
         calculateCoverage();
         initializeViewElements();
+    }
 
+    public void buttonClickMultiPlayer(View v){
+        PopupMenu popupMenu = new PopupMenu(this, v);
+        popupMenu.setOnMenuItemClickListener(PlayModeActivity.this);
+        popupMenu.inflate(R.menu.popup_menu_multiplayer);
+        popupMenu.show();
+    }
 
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_comedy:
+                Toast.makeText(this, "Comedy Clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.item_movies:
+                Toast.makeText(this, "Movies Clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.item_music:
+                Toast.makeText(this, "Music Clicked", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+
+        return false;
     }
 
     private void initializeViewElements(){
@@ -103,12 +127,13 @@ public class PlayModeActivity extends AppCompatActivity {
         int userId = user.getId();
         String userQuestions = "";
 
-
-        for (Statistic statistic : user.getStatistics()) {
-            if (statistic.getSubjectId() == subjectId) {
-                questionCounter = subject.getQuestionCounter();
-                userQuestions = statistic.getQuestionsUser();
-                break;
+        if (!(user.getStatistics() == null)) {
+            for (Statistic statistic : user.getStatistics()) {
+                if (statistic.getSubjectId() == subjectId) {
+                    questionCounter = subject.getQuestionCounter();
+                    userQuestions = statistic.getQuestionsUser();
+                    break;
+                }
             }
         }
 

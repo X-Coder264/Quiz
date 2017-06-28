@@ -31,10 +31,11 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".ReportedQuestionsActivity" />
         <activity android:name=".AdminReportedQuestionsActivity" />
         <activity android:name=".AdminReportedQuestionActivity" />
-        <activity android:name=".AddQuestionActivity"></activity>
+        <activity android:name=".AddQuestionActivity" />
+        <activity android:name=".AdminVerifyQuestionsActivity" />
+        <activity android:name=".AdminVerifyQuestionActivity"></activity>
     </application>
 
 </manifest>

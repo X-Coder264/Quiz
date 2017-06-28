@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import hr.tvz.quiz.AddQuestionActivity;
 import hr.tvz.quiz.AdminReportedQuestionsActivity;
+import hr.tvz.quiz.AdminVerifyQuestionsActivity;
 import hr.tvz.quiz.EditProfileActivity;
 import hr.tvz.quiz.LoginActivity;
 import hr.tvz.quiz.MainActivity;
@@ -110,11 +111,11 @@ public class Drawer {
                         activity.finish();
                         break;*/
                     case "Verifikacija pitanja":
-                        /*intent = new Intent(c, MainActivity.class);
+                        intent = new Intent(c, AdminVerifyQuestionsActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         c.startActivity(intent);
                         activity.finish();
-                        break;*/
+                        break;
                     case "Prijave":
                         intent = new Intent(c, AdminReportedQuestionsActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

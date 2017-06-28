@@ -11,15 +11,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import hr.tvz.quiz.AdminReportedQuestionsActivity;
 import hr.tvz.quiz.AdminVerifyQuestionActivity;
+import hr.tvz.quiz.AdminVerifyQuestionsActivity;
 import hr.tvz.quiz.R;
 import hr.tvz.quiz.model.Question;
 
-public class AdminQuestionsAdapter extends RecyclerView.Adapter<AdminQuestionsAdapter.MyViewHolder> {
+public class AdminVerifyQuestionsAdapter extends RecyclerView.Adapter<AdminVerifyQuestionsAdapter.MyViewHolder> {
 
         private List<Question> questionList;
-        private AdminReportedQuestionsActivity c;
+        private AdminVerifyQuestionsActivity c;
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
             public TextView question, test;
@@ -27,23 +27,23 @@ public class AdminQuestionsAdapter extends RecyclerView.Adapter<AdminQuestionsAd
 
             public MyViewHolder(View view) {
                 super(view);
-                question = (TextView) view.findViewById(R.id.textView_reported_question);
-                //test = (TextView) view.findViewById(R.id.textView_admin_user_name);
+                question = (TextView) view.findViewById(R.id.textView_verify_question);
+                //test = (TextView) view.findViewById(R.id.textView_verify_admin_user_name);
 
-                reportButton = (Button) view.findViewById(R.id.button_see_report_question);
+                reportButton = (Button) view.findViewById(R.id.button_see_question);
             }
         }
 
 
-        public AdminQuestionsAdapter(List<Question> questionList, Context c) {
+        public AdminVerifyQuestionsAdapter(List<Question> questionList, Context c) {
             this.questionList = questionList;
-            this.c = (AdminReportedQuestionsActivity) c;
+            this.c = (AdminVerifyQuestionsActivity) c;
         }
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recyclerview_reported_question, parent, false);
+                    .inflate(R.layout.recyclerview_questions_that_need_to_be_verified, parent, false);
 
             return new MyViewHolder(itemView);
         }
@@ -59,6 +59,7 @@ public class AdminQuestionsAdapter extends RecyclerView.Adapter<AdminQuestionsAd
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), AdminVerifyQuestionActivity.class);
+                    System.out.println(question);
                     intent.putExtra("QUESTION", question);
                     c.startActivity(intent);
                 }

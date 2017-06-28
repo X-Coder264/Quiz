@@ -54,6 +54,9 @@ public interface APIInterface {
     @GET("question/reports")
     Call <ArrayList<Question>> getQuestionWhichHaveReports();
 
+    @GET("question/toVerify")
+    Call <ArrayList<Question>> getQuestionWhichNeedToBeVerified();
+
     @POST("question")
     Call <Question> createQuestion(@Body Question question);
 

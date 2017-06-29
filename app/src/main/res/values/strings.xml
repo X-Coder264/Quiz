@@ -19,6 +19,9 @@
     <string name="action_block_user">Blokiraj korisnika</string>
     <string name="action_delete_user">Izbriši korisnika</string>
     <string name="action_take_picture">Uslikaj sliku kamerom</string>
+    <string name="spinner_course">Smjer</string>
+    <string name="spinner_semester">Godina</string>
+    <string name="spinner_subject">Predmet</string>
     <string name="action_browse_picture">Odaberi sliku s telefona</string>
     <string name="error_invalid_email">Morate unijeti e-mail adresu s TVZ domenom.</string>
     <string name="error_invalid_password">Lozinka je prekratka (minimalno 7 znakova).</string>

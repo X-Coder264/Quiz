@@ -16,13 +16,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-       <TextView
-            android:id="@+id/textView_verify_admin_user_name"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="6dp"
-            android:gravity="center"
-            android:textAlignment="center" />
+        <TextView
+             android:id="@+id/textView_verify_admin_user_name"
+             android:layout_width="60dp"
+             android:layout_height="match_parent"
+             android:layout_marginRight="6dp"
+             android:gravity="center"
+             android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_verify_question"
@@ -33,14 +33,13 @@
             android:textAlignment="center" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_see_question"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/action_view_reported_question" />
 

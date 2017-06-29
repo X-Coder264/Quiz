@@ -1,129 +1,110 @@
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fitsSystemWindows="true">
+        android:id="@+id/scrollView_single_player_end_result_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true"
-            tools:context="hr.tvz.quiz.EditProfileActivity">
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/EmailEditTextEditProfile"
-                android:hint="Email"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif-medium"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:gravity="center"
-                android:enabled="false"
-                android:focusable="false" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView5"
-                android:visibility="invisible"
-                android:fontFamily="sans-serif-medium"
-                android:layout_below="@id/EmailEditTextEditProfile"
-                android:layout_toRightOf="@+id/ChoosePictureButton"
-                android:layout_toEndOf="@+id/ChoosePictureButton"
-                android:layout_marginLeft="42dp"
-                android:layout_marginStart="42dp"
-                android:layout_marginTop="72dp" />
-
-            <Button
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:text="Uslikaj sliku kamerom"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:id="@+id/TakePictureButton"
-                android:layout_below="@id/textView5"
-                android:layout_toLeftOf="@id/textView5"
-                android:layout_toStartOf="@id/textView5"
-                android:layout_marginTop="10dp"
-                android:padding="12dp" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <ImageView
                 app:srcCompat="@mipmap/ic_launcher"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:scaleType="fitXY"
-                android:id="@+id/ProfilePhotoImageViewEditProfile"
-                android:layout_alignTop="@id/TakePictureButton"
-                android:layout_alignLeft="@id/textView5"
-                android:layout_alignStart="@id/textView5" />
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:id="@+id/ProfilePhotoImageViewEditProfile" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/TakePictureButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_take_picture" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/ChoosePictureButton"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/action_browse_picture" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/NameEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_name"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/EmailEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinner_semester_admin_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:prompt="@string/spinner_semester"
+                android:dropDownWidth="match_parent" />
+
+            <Spinner
+                android:id="@+id/spinner_course_admin_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:prompt="@string/spinner_course"
+                android:dropDownWidth="match_parent" />
 
             <Button
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:text="Odaberi sliku s telefona"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:id="@+id/ChoosePictureButton"
-                android:layout_below="@id/TakePictureButton"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:padding="12dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Spremi promjene"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
                 android:id="@+id/EditProfileButton"
-                android:padding="12dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_below="@id/ProfilePhotoImageViewEditProfile"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp" />
-        </RelativeLayout>
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/action_save"
+                android:textStyle="bold" />
 
+        </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
-
-    <ListView android:id="@+id/left_drawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:background="#ffffff"/>
-
-</android.support.v4.widget.DrawerLayout>

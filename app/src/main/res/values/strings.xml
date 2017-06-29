@@ -15,6 +15,11 @@
     <string name="action_send_report">Pošalji prijavu</string>
     <string name="action_view_statistics">Pregled statistike</string>
     <string name="action_change_password">Promijeni lozinku</string>
+    <string name="action_save">Spremi promijene</string>
+    <string name="action_block_user">Blokiraj korisnika</string>
+    <string name="action_delete_user">Izbriši korisnika</string>
+    <string name="action_take_picture">Uslikaj sliku kamerom</string>
+    <string name="action_browse_picture">Odaberi sliku s telefona</string>
     <string name="error_invalid_email">Morate unijeti e-mail adresu s TVZ domenom.</string>
     <string name="error_invalid_password">Lozinka je prekratka (minimalno 7 znakova).</string>
     <string name="error_incorrect_password">Lozinka je netočna</string>

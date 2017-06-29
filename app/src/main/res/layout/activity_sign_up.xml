@@ -90,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
+                android:spinnerMode="dialog"
                 android:prompt="@string/spinner_semester"
                 android:dropDownWidth="match_parent" />
 
@@ -98,6 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
+                android:spinnerMode="dialog"
                 android:prompt="@string/spinner_course"
                 android:dropDownWidth="match_parent" />
 

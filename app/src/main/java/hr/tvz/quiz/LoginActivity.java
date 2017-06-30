@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.editText_email);
 
-        mPasswordView = (EditText) findViewById(R.id.editText_password);
+        mPasswordView = (EditText) findViewById(R.id.editText_password_login);
 
         Button mEmailSignInButton = (Button) findViewById(R.id.button_login);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -124,7 +124,11 @@ public class LoginActivity extends AppCompatActivity {
             // perform the user login attempt.
             showProgress(true);
 
+            System.out.println(email);
+            System.out.println(password);
+
             user = new User(email, password);
+            System.out.println(user);
             Call<User> call = client.getApiService().login(user);
             call.enqueue(new Callback<User>() {
                 @Override

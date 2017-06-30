@@ -98,26 +98,27 @@
 
     <string-array name="nav_drawer_items_user">
         <item>Početna</item>
-        <item>Profil</item>
-        <item>Postavke</item>
+        <item>Editiraj profil</item>
+        <item>Statistike</item>
         <item>Dodaj pitanje</item>
         <item>Odjava</item>
     </string-array>
 
     <string-array name="nav_drawer_items_admin">
         <item>Početna</item>
-        <item>Profil</item>
-        <item>Postavke</item>
+        <item>Editiraj profil</item>
+        <item>Statistike</item>
         <item>Dodaj pitanje</item>
-        <item>Odjava</item>
-
-        <item>Korisnici</item>
         <item>Verifikacija pitanja</item>
-        <item>Prijave</item>
+        <item>Prijavljena pitanja</item>
+        <item>Odjava</item>
     </string-array>
     <string name="title_activity_tab">Quiz</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--
     <array name="nav_drawer_icons">

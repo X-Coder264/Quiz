@@ -37,6 +37,9 @@ public interface APIInterface {
     @POST("user")
     Call<User> createUser(@Body User user);
 
+    @PUT("user/{id}")
+    Call<User> updateUser(@Body User user, @Path("id") int id);
+
     @Multipart
     @POST("user/{id}/uploadImage")
     Call<User> updateUserPhoto(
@@ -69,6 +72,11 @@ public interface APIInterface {
     Call<Game> postGame(@Body Game game);
 
     //Statistics
+    @GET("statistic/{user_id}/{subject_id}")
+    Call<Statistic> getUserSubjectStatistics(@Path("user_id") int user_id, @Path("subject_id") int subject_id);
+    @GET("statistic/getScoreTable/{subject_id}")
+    Call<ArrayList<Statistic>> getSubjectScoreTable(@Path("subject_id") int subject_id);
+
     @POST("statistic")
     @Nullable
     Call<Statistic> postStatistic(@Body Statistic statistic);
@@ -83,26 +91,4 @@ public interface APIInterface {
     //Report
     @POST("report")
     Call<Report> postReport(@Body Report report);
-
-/*
-    @GET("group/{id}/users")
-    Call<List<User>> groupList(@Path("id") int groupId, @Query("sort") String sort);
-
-
-    @POST("users/new")
-    Call<User> createUser(@Body User user);
-
-
-    @GET("/report")
-    Call<MultipleResource> doGetListResources();
-
-    @POST("/question")
-    Call<User> createUser(@Body User user);
-
-    @GET("/report/?")
-    Call<UserList> doGetUserList(@Query("page") String page);
-
-    @FormUrlEncoded
-    @POST("/users?")
-    Call<UserList> doCreateUserWithField(@Field("name") String name, @Field("job") String job);*/
 }

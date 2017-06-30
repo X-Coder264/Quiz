@@ -14,6 +14,7 @@ import android.widget.Toast;
 import hr.tvz.quiz.AddQuestionActivity;
 import hr.tvz.quiz.AdminReportedQuestionsActivity;
 import hr.tvz.quiz.AdminVerifyQuestionsActivity;
+import hr.tvz.quiz.ChooseSubjectForStatisticsActivity;
 import hr.tvz.quiz.EditProfileActivity;
 import hr.tvz.quiz.LoginActivity;
 import hr.tvz.quiz.MainActivity;
@@ -83,18 +84,18 @@ public class Drawer {
 
                         //activity.finish();
                         break;
-                    case "Profil":
+                    case "Editiraj profil":
                         intent = new Intent(c, EditProfileActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         c.startActivity(intent);
                         getmDrawerLayout().closeDrawers();
                         break;
-                    case "Postavke":
-                        /*intent = new Intent(c, MainActivity.class);
+                    case "Statistike":
+                        intent = new Intent(c, ChooseSubjectForStatisticsActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         c.startActivity(intent);
-                        activity.finish();
-                        break;*/
+                        getmDrawerLayout().closeDrawers();
+                        break;
                     case "Dodaj pitanje":
                         intent = new Intent(c, AddQuestionActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -104,21 +105,14 @@ public class Drawer {
                     case "Odjava":
                         logout();
                         break;
-                    case "Korisnici":
-                        /*intent = new Intent(c, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        c.startActivity(intent);
-                        activity.finish();
-                        break;*/
                     case "Verifikacija pitanja":
                         intent = new Intent(c, AdminVerifyQuestionsActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         c.startActivity(intent);
-                        activity.finish();
                         break;
-                    case "Prijave":
+                    case "Prijavljena pitanja":
                         intent = new Intent(c, AdminReportedQuestionsActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         c.startActivity(intent);
                         break;
                     case "Prijava":

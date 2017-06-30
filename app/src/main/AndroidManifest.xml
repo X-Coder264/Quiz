@@ -35,7 +35,9 @@
         <activity android:name=".AdminReportedQuestionActivity" />
         <activity android:name=".AddQuestionActivity" />
         <activity android:name=".AdminVerifyQuestionsActivity" />
-        <activity android:name=".AdminVerifyQuestionActivity"></activity>
+        <activity android:name=".AdminVerifyQuestionActivity" />
+        <activity android:name=".ChooseSubjectForStatisticsActivity" />
+        <activity android:name=".StatisticsActivity" />
     </application>
 
 </manifest>

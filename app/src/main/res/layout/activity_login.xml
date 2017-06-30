@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/editText_password"
+                    android:id="@+id/editText_password_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"

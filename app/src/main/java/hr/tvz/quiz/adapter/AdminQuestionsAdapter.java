@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import hr.tvz.quiz.AdminReportedQuestionActivity;
 import hr.tvz.quiz.AdminReportedQuestionsActivity;
-import hr.tvz.quiz.AdminVerifyQuestionActivity;
 import hr.tvz.quiz.R;
 import hr.tvz.quiz.model.Question;
 
@@ -58,7 +58,7 @@ public class AdminQuestionsAdapter extends RecyclerView.Adapter<AdminQuestionsAd
             holder.reportButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), AdminVerifyQuestionActivity.class);
+                    Intent intent = new Intent(v.getContext(), AdminReportedQuestionActivity.class);
                     intent.putExtra("QUESTION", question);
                     c.startActivity(intent);
                 }

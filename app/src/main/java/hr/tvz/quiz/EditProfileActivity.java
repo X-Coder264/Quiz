@@ -22,10 +22,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -36,9 +39,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import hr.tvz.quiz.model.Course;
 import hr.tvz.quiz.model.User;
 import hr.tvz.quiz.rest.APIClient;
 import hr.tvz.quiz.util.Drawer;
@@ -62,8 +69,14 @@ public class EditProfileActivity extends AppCompatActivity {
     private UserLocalStore userLocalStore;
     private User user;
 
-    private EditText EmailEditText;
+    private EditText nameEditText, EmailEditText;
     private Button EditProfileButton, TakePictureButton, ChoosePictureButton;
+    private Spinner spinnerSemester;
+    private Spinner spinnerCourse;
+
+    private List<Course> courses;
+    private Course course = null;
+    private int semester = 0;
 
     private ImageView imgPreview;
 
@@ -87,16 +100,25 @@ public class EditProfileActivity extends AppCompatActivity {
         userLocalStore = new UserLocalStore(this);
         user = userLocalStore.getLoggedInUser();
 
+        nameEditText = (EditText) findViewById(R.id.NameEditTextEditProfile);
         EmailEditText = (EditText) findViewById(R.id.EmailEditTextEditProfile);
         TakePictureButton = (Button) findViewById(R.id.TakePictureButton);
         ChoosePictureButton = (Button) findViewById(R.id.ChoosePictureButton);
         EditProfileButton = (Button) findViewById(R.id.EditProfileButton);
         imgPreview = (ImageView) findViewById(R.id.ProfilePhotoImageViewEditProfile);
 
+        spinnerCourse = (Spinner) findViewById(R.id.spinner_course_edit_profile);
+        spinnerSemester = (Spinner) findViewById(R.id.spinner_semester_edit_profile);
+
+        setSpinner(user.getSemester() - 1, Arrays.asList("1", "2", "3", "4", "5", "6"), spinnerSemester);
+
+        initializeCourses();
+
         if (! user.getImage().equals("")) {
             Glide.with(this).load(APIClient.getURL() + "resources/" + user.getId() + "/" + user.getImage()).into(imgPreview);
         }
 
+        nameEditText.setText(user.getName());
         EmailEditText.setText(user.getEmail());
 
         if (android.os.Build.VERSION.SDK_INT >= 23) {
@@ -140,7 +162,7 @@ public class EditProfileActivity extends AppCompatActivity {
         EditProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (file.exists()) {
+                if (file != null && file.exists()) {
                     RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
                     MultipartBody.Part image = MultipartBody.Part.createFormData("image", file.getName(), reqFile);
 
@@ -154,9 +176,21 @@ public class EditProfileActivity extends AppCompatActivity {
                             if (statusCode == 200) {
                                 User user = response.body();
                                 userLocalStore.storeUserData(user);
-                                System.out.println("Uspjeh.");
-                                Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
-                                startActivity(intent);
+                                user = userLocalStore.getLoggedInUser();
+                                if (semester != 0 || course != null) {
+                                    if (semester != 0) {
+                                        user.setSemester(semester);
+                                    }
+                                    if (course != null) {
+                                        user.setCourseId(course.getId());
+                                    }
+                                    updateUser(user);
+                                } else {
+                                    Toast.makeText(EditProfileActivity.this, "Your avatar has been successfully updated.", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                }
                             } else {
                                 System.out.println("Nije 200.");
                             }
@@ -167,10 +201,119 @@ public class EditProfileActivity extends AppCompatActivity {
                             Log.e("Image Upload Error", t.toString());
                         }
                     });
+                } else if (semester != 0 || course != null) {
+                    System.out.println("ulazak 1");
+                    if (semester != 0) {
+                        user.setSemester(semester);
+                    }
+                    if (course != null) {
+                        user.setCourseId(course.getId());
+                    }
+                    updateUser(user);
                 } else {
+                    System.out.println("ulazak xy");
                     Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
+            }
+        });
+    }
+
+    public void setSpinner(int defaultSpinnerIndex, List<String> spinnerArray, Spinner spinner) {
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(EditProfileActivity.this, R.layout.simple_spinner_item, spinnerArray);
+        spinner.setAdapter(dataAdapter);
+        spinner.setSelection(defaultSpinnerIndex);
+    }
+
+    private void initializeCourses() {
+        Call<List<Course>> call = client.getApiService().getCourses();
+        call.enqueue(new Callback<List<Course>>() {
+            @Override
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                int statusCode = response.code();
+                courses = response.body();
+                if (statusCode == 200) {
+                    List<String> spinnerArrayCourse = new ArrayList<String>();
+                    int defaultSpinnerIndex = 0;
+
+                    for (int i = 0; i < courses.size(); i++) {
+                        spinnerArrayCourse.add(courses.get(i).getName());
+
+                        if (courses.get(i).getId() == user.getCourseId()) {
+                            course = courses.get(i);
+                            defaultSpinnerIndex = i;
+                        }
+                    }
+                    setSpinner(defaultSpinnerIndex, spinnerArrayCourse, spinnerCourse);
+
+                    spinnerLogic();
+
+                } else {
+                    System.out.println("Objects not found");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                Log.w("Error", t.getCause());
+            }
+        });
+    }
+
+    public void spinnerLogic(){
+        spinnerCourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                for (int i = 0; i < courses.size(); i++){
+                    if (courses.get(i).getName() == spinnerCourse.getSelectedItem()){
+                        course = courses.get(i);
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
+        spinnerSemester.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                semester = Integer.parseInt(spinnerSemester.getSelectedItem().toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+    }
+
+    private void updateUser(User user) {
+        System.out.println("updateUser");
+        Call<User> call = client.getApiService().updateUser(user, user.getId());
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                System.out.println("updateUser onResponse");
+                int statusCode = response.code();
+                System.out.println("statusCode " + statusCode);
+                System.out.println("response " + response);
+                if (statusCode == 200) {
+                    User user = response.body();
+                    userLocalStore.storeUserData(user);
+                    Toast.makeText(EditProfileActivity.this, "Your profile has been successfully updated.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(EditProfileActivity.this, "An error happened. Please try later.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                System.out.println("onFailure");
+                System.out.println(t.toString());
+                Log.e("Image Upload Error", t.toString());
             }
         });
     }

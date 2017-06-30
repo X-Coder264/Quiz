@@ -1,8 +1,9 @@
 package hr.tvz.quiz.model;
 
-import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 
 import lombok.Data;
 
@@ -24,6 +25,9 @@ public class Statistic implements Serializable{
     @SerializedName("subject_id")
     @Expose
     public Integer subjectId;
+    @SerializedName("username")
+    @Expose
+    public String username;
 
     /**
      * No args constructor for use in serialization

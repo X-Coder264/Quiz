@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -164,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                         user = response.body();
                         tNameMain.setText(user.getName());
                         tTitleMain.setText(user.getTitle().getName());
-                        tSemesterMain.setText(user.getSemester() + ". godina");
+                        tSemesterMain.setText(user.getSemester() + ". semestar");
 
                         setSpinner(user.getSemester() - 1, Arrays.asList("1", "2", "3", "4", "5", "6"), spinnerSemester);
 
@@ -185,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             }
             tNameMain.setText(user.getName());
             //tTitleMain.setText(user.getTitle().getName());
-            tSemesterMain.setText(user.getSemester() + ". godina");
+            tSemesterMain.setText(user.getSemester() + ". semestar");
 
             setSpinner(user.getSemester() - 1, Arrays.asList("1", "2", "3", "4", "5", "6"), spinnerSemester);
 

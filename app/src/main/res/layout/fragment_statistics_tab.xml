@@ -5,8 +5,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="hr.tvz.quiz.TabActivity$PlaceholderFragment">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <ScrollView
         android:id="@+id/scrollView_statistics_tab_form"
@@ -16,8 +15,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView11111"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pie_chart_for_coverage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView_student_vs_student_result"

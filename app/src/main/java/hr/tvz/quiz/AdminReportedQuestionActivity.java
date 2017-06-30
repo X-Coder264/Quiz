@@ -110,7 +110,7 @@ public class AdminReportedQuestionActivity extends AppCompatActivity {
         call.enqueue(new Callback<Question>() {
             @Override
             public void onResponse(Call<Question> call, Response<Question> response) {
-                if (response.code() == 204) {
+                if (response.code() >= 200 && response.code() <= 400) {
                     Toast.makeText(AdminReportedQuestionActivity.this, "The report(s) have been solved and the question was updated.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(AdminReportedQuestionActivity.this, AdminReportedQuestionsActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

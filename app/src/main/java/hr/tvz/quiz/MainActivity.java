@@ -27,6 +27,7 @@ import hr.tvz.quiz.model.Course;
 import hr.tvz.quiz.model.Subject;
 import hr.tvz.quiz.model.User;
 import hr.tvz.quiz.rest.APIClient;
+import hr.tvz.quiz.rest.STOMPwebScoket;
 import hr.tvz.quiz.util.Drawer;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,13 +48,14 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonPlay;
 
     private UserLocalStore userLocalStore;
-
+    private User user;
 
     private View mProgressView;
     private View mLoginFormView;
 
     private APIClient client = APIClient.getInstance();
-    private User user;
+    private STOMPwebScoket stomp;
+
     private List<Course> courses;
 
     private Course course = new Course();
@@ -74,8 +76,11 @@ public class MainActivity extends AppCompatActivity {
         initializeDrawer();
 
         userLocalStore = new UserLocalStore(this);
-
         user = userLocalStore.getLoggedInUser();
+
+        stomp = STOMPwebScoket.getInstance(this, user);
+        stomp.connect();
+        stomp.listenGameInvitation();
 
         initializeViewElements();
         initializeUser();
@@ -95,6 +100,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        stomp.disconnect();
+        super.onBackPressed();
     }
 
     //Drawer Starts
@@ -135,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         initializeUser();
+        stomp = STOMPwebScoket.getInstance(this, user);
     }
 
 

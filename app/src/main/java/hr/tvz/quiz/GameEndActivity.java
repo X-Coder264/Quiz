@@ -99,7 +99,7 @@ public class GameEndActivity extends AppCompatActivity {
         });
 
         //Recycler view
-        mAdapter = new QuestionsAdapter(questions, this);
+        mAdapter = new QuestionsAdapter(questions, answerPosition, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recycleReviewList.setLayoutManager(mLayoutManager);
         recycleReviewList.setItemAnimator(new DefaultItemAnimator());
@@ -161,15 +161,16 @@ public class GameEndActivity extends AppCompatActivity {
         Statistic statistic = new Statistic();
         String questionsUser = "";
 
-        for (Statistic temp : user.getStatistics()) {
-            System.out.println(temp.getSubjectId() + " " + subject.getId());
-            if (temp.getSubjectId().equals(subject.getId())) {
-                statistic = temp;
-                break;
+        if ( user.getStatistics() != null) {
+            for (Statistic temp : user.getStatistics()) {
+                if (temp.getSubjectId().equals(subject.getId())) {
+                    statistic = temp;
+                    break;
+                }
             }
         }
 
-        if (statistic.getUserId() ==null){
+        if (statistic.getUserId() == null){
             statistic.setPoints(correctCounter);
             statistic.setUserId(user.getId());
             statistic.setSubjectId(subject.getId());
@@ -181,7 +182,9 @@ public class GameEndActivity extends AppCompatActivity {
             statistic.setQuestionsUser(questionsUser);
 
             //ToDo: user na pocetnom ekranu se ne izmjeni...
-            List<Statistic> temp = user.getStatistics();
+            List<Statistic> temp = new ArrayList<>();
+            if ( user.getStatistics() != null)
+                temp = user.getStatistics();
             temp.add(statistic);
             user.setStatistics(temp);
         }

@@ -5,12 +5,14 @@ import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import hr.tvz.quiz.model.Course;
 import hr.tvz.quiz.model.Game;
 import hr.tvz.quiz.model.Question;
 import hr.tvz.quiz.model.Report;
 import hr.tvz.quiz.model.Statistic;
+import hr.tvz.quiz.model.Subject;
 import hr.tvz.quiz.model.User;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -21,10 +23,14 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIInterface {
 
     //User
+    @GET("user/activeUsers")
+    Call<ConcurrentHashMap<String, String>> getActiveUsers();
+
     @GET("user/{id}")
     Call<User> getUser(@Path("id") int id);
 
@@ -91,4 +97,9 @@ public interface APIInterface {
     //Report
     @POST("report")
     Call<Report> postReport(@Body Report report);
+
+    //Subject
+    @GET("subject/{id}")
+    Call<Subject> getSubject(@Path("id") int id);
+
 }

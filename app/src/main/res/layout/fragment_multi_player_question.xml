@@ -11,91 +11,78 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <ScrollView
-        android:id="@+id/scrollView_play_mode_form"
+        android:id="@+id/scrollView_multi_player_question_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imageView_subject_image_play_mode"
-                android:layout_width="97dp"
-                android:layout_height="97dp"
-                android:layout_gravity="center"
-                android:layout_weight="1.46"
-                app:srcCompat="@mipmap/ic_launcher_round" />
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <TextView
-                android:id="@+id/textView_mode_name"
+                android:id="@+id/textView_multi_player_question_timer"
                 android:layout_width="match_parent"
-                android:layout_height="30.74dp"
+                android:layout_height="40dp"
                 android:gravity="center_vertical"
-                android:text="@string/subject_name"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_current_question_multi_player"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="@string/current_question_single_player"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView_mode_coverage"
+                android:id="@+id/textView_multi_player_question"
                 android:layout_width="match_parent"
-                android:layout_height="30.74dp"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
                 android:gravity="center_vertical"
-                android:text="@string/questions_coverage"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30.74dp"
-                android:gravity="center_vertical"
-                android:text="@string/choose_play_mode"
+                android:text="@string/single_player_question"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinner_colloquium_exam__play_mode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:spinnerMode="dialog"
-                android:prompt="@string/spinner_colloquium_exam"
-                android:dropDownWidth="match_parent" />
-
-            <Spinner
-                android:id="@+id/spinner_number_questions_play_mode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:spinnerMode="dialog"
-                android:prompt="@string/spinner_number_questions"
-                android:dropDownWidth="match_parent" />
-
-            <Button
-                android:id="@+id/button_single_player"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_single_player"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button_multi_player"
+                android:id="@+id/button_multi_player_answer1"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_multi_player"
-                android:textStyle="bold"
-                android:onClick="buttonClickMultiPlayer" />
+                android:layout_marginTop="12dp"
+                android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/button_multi_player_answer2"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/button_multi_player_answer3"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_multi_player_answer4"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

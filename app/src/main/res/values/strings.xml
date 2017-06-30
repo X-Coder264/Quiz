@@ -131,5 +131,10 @@
         <item>@drawable/log_out</item>
     </array>
 -->
+    <!-- Web socket -->
+    <string name="send_mode_1">Echo STOMP</string>
+    <string name="send_mode_2">Echo REST</string>
+    <string name="connect_stomp">Connect STOMP</string>
+    <string name="disconnect_stomp">DISCONNECT STOMP</string>
 
 </resources>

@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hr.tvz.quiz.GameEndActivity;
 import hr.tvz.quiz.R;
 import hr.tvz.quiz.fragments.ReportQuestionFragment;
 import hr.tvz.quiz.fragments.SinglePlayerQuestionFragment;
+import hr.tvz.quiz.model.Answer;
 import hr.tvz.quiz.model.Question;
 
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyViewHolder> {
@@ -24,6 +26,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
         private List<Question> questionList;
         private GameEndActivity c;
         private FragmentManager f_manager;
+        private ArrayList<Integer> answerPosition;
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
             public TextView question, answer1, answer2, answer3, answer4;
@@ -42,8 +45,9 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
         }
 
 
-        public QuestionsAdapter(List<Question> questionList, Context c) {
+        public QuestionsAdapter(List<Question> questionList, ArrayList<Integer> answerPosition, Context c) {
             this.questionList = questionList;
+            this.answerPosition = answerPosition;
             this.c = (GameEndActivity)c;
         }
 
@@ -58,9 +62,39 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
             final Question question = questionList.get(position);
+            holder.answer1.setBackgroundColor(ContextCompat.getColor(c, R.color.white));
+            holder.answer2.setBackgroundColor(ContextCompat.getColor(c, R.color.white));
+            holder.answer3.setBackgroundColor(ContextCompat.getColor(c, R.color.white));
+            holder.answer4.setBackgroundColor(ContextCompat.getColor(c, R.color.white));
+
+            ArrayList<Integer> a = answerPosition;
+            if (answerPosition.get(position) == 1 && !question.getAnswers().get(0).isCorrect()) {
+                holder.answer1.setBackgroundColor(ContextCompat.getColor(c, R.color.red));
+            }
+            if (answerPosition.get(position) == 2 && !question.getAnswers().get(1).isCorrect()) {
+                holder.answer1.setBackgroundColor(ContextCompat.getColor(c, R.color.red));
+            }
+            if (answerPosition.get(position) == 3 && !question.getAnswers().get(2).isCorrect()) {
+                holder.answer1.setBackgroundColor(ContextCompat.getColor(c, R.color.red));
+            }
+            if (answerPosition.get(position) == 4 && !question.getAnswers().get(3).isCorrect()) {
+                holder.answer1.setBackgroundColor(ContextCompat.getColor(c, R.color.red));
+            }
+
+            if (question.getAnswers().get(0).isCorrect()) {
+                holder.answer1.setBackgroundColor(ContextCompat.getColor(c, R.color.green));
+            }
+            else if(question.getAnswers().get(1).isCorrect()) {
+                holder.answer2.setBackgroundColor(ContextCompat.getColor(c, R.color.green));
+            }
+            else if(question.getAnswers().get(2).isCorrect()) {
+                holder.answer3.setBackgroundColor(ContextCompat.getColor(c, R.color.green));
+            }
+            else {
+                holder.answer4.setBackgroundColor(ContextCompat.getColor(c, R.color.green));
+            }
 
             holder.question.setText(question.getQuestion());
-
             holder.answer1.setText(question.getAnswers().get(0).getAnswer());
             holder.answer2.setText(question.getAnswers().get(1).getAnswer());
             holder.answer3.setText(question.getAnswers().get(2).getAnswer());

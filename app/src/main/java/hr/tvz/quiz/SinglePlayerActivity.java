@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import hr.tvz.quiz.fragments.SinglePlayerQuestionFragment;
 import hr.tvz.quiz.model.Exam;

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import hr.tvz.quiz.R;
 import hr.tvz.quiz.model.Question;
 
-public class SinglePlayerQuestionFragment extends Fragment {
+public class MultiPlayerQuestionFragment extends Fragment {
 
     private static final String QUESTION = "question";
     private static final String QUESTION_NUMBER = "question_number";
@@ -34,13 +34,13 @@ public class SinglePlayerQuestionFragment extends Fragment {
 
     private CountDownTimer timer;
 
-    public static SinglePlayerQuestionFragment newInstance(Question question, int number, int number2) {
+    public static MultiPlayerQuestionFragment newInstance(Question question, int number, int number2) {
 
         final Bundle args = new Bundle();
         args.putSerializable(QUESTION, question);
         args.putInt(QUESTION_NUMBER, number);
         args.putInt(MAX_QUESTION_NUMBER, number2);
-        final SinglePlayerQuestionFragment fragment = new SinglePlayerQuestionFragment();
+        final MultiPlayerQuestionFragment fragment = new MultiPlayerQuestionFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,7 +59,7 @@ public class SinglePlayerQuestionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_single_player_question, container, false);
+        final View view = inflater.inflate(R.layout.fragment_multi_player_question, container, false);
 
         final Bundle args = getArguments();
 
@@ -96,17 +96,17 @@ public class SinglePlayerQuestionFragment extends Fragment {
 
 
     public void initializeViewElements(View view){
-        tTimer = (TextView) view.findViewById(R.id.textView_single_player_question_timer);
-        tQuestion = (TextView) view.findViewById(R.id.textView_single_player_question);
-        tCurrentQuestionNumber = (TextView) view.findViewById(R.id.textView_current_question_single_player);
+        tTimer = (TextView) view.findViewById(R.id.textView_multi_player_question_timer);
+        tQuestion = (TextView) view.findViewById(R.id.textView_multi_player_question);
+        tCurrentQuestionNumber = (TextView) view.findViewById(R.id.textView_current_question_multi_player);
 
         tQuestion.setText(question.getQuestion());
         tCurrentQuestionNumber.setText(Integer.toString(questionNumber) + " / " + Integer.toString(maxQuestionNumber));
 
-        buttonAnswer1 = (Button) view.findViewById(R.id.button_single_player_answer1);
-        buttonAnswer2 = (Button) view.findViewById(R.id.button_single_player_answer2);
-        buttonAnswer3 = (Button) view.findViewById(R.id.button_single_player_answer3);
-        buttonAnswer4 = (Button) view.findViewById(R.id.button_single_player_answer4);
+        buttonAnswer1 = (Button) view.findViewById(R.id.button_multi_player_answer1);
+        buttonAnswer2 = (Button) view.findViewById(R.id.button_multi_player_answer2);
+        buttonAnswer3 = (Button) view.findViewById(R.id.button_multi_player_answer3);
+        buttonAnswer4 = (Button) view.findViewById(R.id.button_multi_player_answer4);
 
         buttonAnswer1.setText(question.getAnswers().get(0).getAnswer());
         buttonAnswer2.setText(question.getAnswers().get(1).getAnswer());

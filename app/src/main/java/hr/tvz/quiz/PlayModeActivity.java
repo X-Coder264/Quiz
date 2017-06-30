@@ -1,14 +1,25 @@
 package hr.tvz.quiz;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,10 +27,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import hr.tvz.quiz.model.Statistic;
 import hr.tvz.quiz.model.Subject;
 import hr.tvz.quiz.model.User;
+import hr.tvz.quiz.rest.APIClient;
+import hr.tvz.quiz.rest.STOMPwebScoket;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import ua.naiksoftware.stomp.client.StompClient;
+
+import static android.R.attr.id;
 
 
 public class PlayModeActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
@@ -41,23 +61,121 @@ public class PlayModeActivity extends AppCompatActivity implements PopupMenu.OnM
     private int questionCounter;
     private int questionUserCounter;
 
+    private STOMPwebScoket socket;
+
+    private APIClient client = APIClient.getInstance();
+    private ConcurrentHashMap<String, String> usersMap = new ConcurrentHashMap<>();
+
+    private STOMPwebScoket stomp;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_mode);
 
+        initializeGetAllUsers();
+
         subject = (Subject) getIntent().getSerializableExtra("SUBJECT");
         user = (User) getIntent().getSerializableExtra("USER");
+
+        stomp = STOMPwebScoket.getInstance(this, user);
 
         calculateCoverage();
         initializeViewElements();
     }
 
+    /*public void buttonClickSendInvite(View view) {
+        int examId = spinnerColoquium.getSelectedItemPosition();
+        examId++;
+        String message = String.valueOf(examId) +"/" + "f f";
+        stomp.listenGetQuestions("Luka Lukina");
+        stomp.unsubscribeGetQuestions();
+    }*/
+
+    @Override
+    protected void onDestroy() {
+        //socket.disconnect();
+        super.onDestroy();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        stomp = STOMPwebScoket.getInstance(this, user);
+    }
+
+    private void initializeGetAllUsers(){
+        Call<ConcurrentHashMap<String, String>> call = client.getApiService().getActiveUsers();
+        call.enqueue(new Callback<ConcurrentHashMap<String, String>>() {
+            @Override
+            public void onResponse(Call<ConcurrentHashMap<String, String>> call, Response<ConcurrentHashMap<String, String>> response) {
+                int statusCode = response.code();
+                if (statusCode == 200) {
+                    usersMap = response.body();
+                    for (String i : usersMap.keySet()) {
+                        if (i.equals(user.getName())) {
+                            usersMap.remove(i);
+                            continue;
+                        }
+                    }
+                } else {
+                    System.out.println("Objects not found");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ConcurrentHashMap<String, String>> call, Throwable t) {
+                Log.w("Tomislav", t.getCause());
+            }
+        });
+    }
+
     public void buttonClickMultiPlayer(View v){
-        PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.setOnMenuItemClickListener(PlayModeActivity.this);
-        popupMenu.inflate(R.menu.popup_menu_multiplayer);
-        popupMenu.show();
+        Intent intent = new Intent(this, SearchMenuActivity.class);
+
+        intent.putExtra("USER", user);
+        intent.putExtra("SUBJECT", subject);
+        intent.putExtra("OPPONENTS", usersMap);
+        intent.putExtra("EXAM_ID", spinnerColoquium.getSelectedItemPosition()+1);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        this.startActivity(intent);
+    }
+
+    public void sendNotification(){
+        createPendingIntent();
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.mipmap.ic_settings_black_24dp)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_home_black_24dp))
+                //.setColor(getResources().getColor(R.color.primary))
+                .setContentTitle("Hello")
+                .setContentIntent(createPendingIntent())
+                .setContentText(String.format("Tekst", "Naslov"))
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setPriority(Notification.PRIORITY_MAX);
+
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(id, builder.build());
+    }
+
+    public PendingIntent createPendingIntent(){
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+// Adds the back stack
+        stackBuilder.addParentStack(MainActivity.class);
+
+// Adds the Intent to the top of the stack
+        stackBuilder.addNextIntent(resultIntent);
+// Gets a PendingIntent containing the entire back stack
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        return resultPendingIntent;
     }
 
     public boolean onMenuItemClick(MenuItem item) {
@@ -143,15 +261,6 @@ public class PlayModeActivity extends AppCompatActivity implements PopupMenu.OnM
         this.questionCounter = questionCounter;
         this.questionUserCounter = questionUserCounter;
     }
-
-    /*
-    for(int i = 0; i < questionCounter; i++){
-            for(int j = 0; j < questionUserCounter; j++)
-                if (questionsId[i] == questionsUser[j]){
-
-                }
-        }
-     */
 
 
 }

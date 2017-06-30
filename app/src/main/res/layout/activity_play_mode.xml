@@ -63,6 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
+                android:spinnerMode="dialog"
+                android:prompt="@string/spinner_colloquium_exam"
                 android:dropDownWidth="match_parent" />
 
             <Spinner
@@ -70,6 +72,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
+                android:spinnerMode="dialog"
+                android:prompt="@string/spinner_number_questions"
                 android:dropDownWidth="match_parent" />
 
             <Button

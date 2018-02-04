@@ -9,8 +9,9 @@ package hr.tvz.quiz.rest;
 
 public class APIClient {
 
-    private static final String BASE_URL = "http://10.0.3.2:8080/"; //URL is not localhost because emulator doesn't see it
+    //private static final String BASE_URL = "http://10.0.3.2:8080/"; //URL is not localhost because emulator doesn't see it
     //private static final String BASE_URL = "http://192.168.1.86:8080/";
+    private static final String BASE_URL = "http://192.168.43.67:8080/";
 
     private static APIClient instance = null;
     private APIInterface apiService;

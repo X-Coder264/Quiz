@@ -45,8 +45,10 @@ import static android.R.attr.id;
 
 public class STOMPwebScoket implements Serializable {
 
-    private static final String BASE_URL = "ws://" + "10.0.3.2" + ":" + "8080" + "/ws/websocket";
+
+    //private static final String BASE_URL = "ws://" + "10.0.3.2" + ":" + "8080" + "/ws/websocket";
     //private static final String BASE_URL = "ws://" + "192.168.1.86" + ":" + "8080" + "/ws/websocket";
+    private static final String BASE_URL = "ws://" + "192.168.43.67" + ":" + "8080" + "/ws/websocket";
 
     private StompClient mStompClient;
 

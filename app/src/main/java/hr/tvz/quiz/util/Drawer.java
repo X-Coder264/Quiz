@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import hr.tvz.quiz.AddQuestionActivity;
-import hr.tvz.quiz.AdminReportedQuestionsActivity;
 import hr.tvz.quiz.AdminVerifyQuestionsActivity;
 import hr.tvz.quiz.ChooseSubjectForStatisticsActivity;
 import hr.tvz.quiz.EditProfileActivity;
@@ -105,16 +104,16 @@ public class Drawer {
                     case "Odjava":
                         logout();
                         break;
-                    case "Verifikacija pitanja":
+                    case "Prijavljena pitanja":
                         intent = new Intent(c, AdminVerifyQuestionsActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         c.startActivity(intent);
                         break;
-                    case "Prijavljena pitanja":
+                    /*case "Prijavljena pitanja":
                         intent = new Intent(c, AdminReportedQuestionsActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         c.startActivity(intent);
-                        break;
+                        break;*/
                     case "Prijava":
                         intent = new Intent(c, SignUpActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

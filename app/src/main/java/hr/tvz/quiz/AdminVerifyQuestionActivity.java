@@ -9,10 +9,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import hr.tvz.quiz.model.Answer;
 import hr.tvz.quiz.model.Question;
 import hr.tvz.quiz.rest.APIClient;
 import retrofit2.Call;
@@ -85,16 +81,20 @@ public class AdminVerifyQuestionActivity extends AppCompatActivity {
 
         String answer1_string = answerOneEditText.getText().toString();
         boolean correct1 = answerOneCheckBox.isChecked();
-        Answer answer1 = new Answer(answer1_string, correct1);
+        question.getAnswers().get(0).setAnswer(answer1_string);
+        question.getAnswers().get(0).setCorrect(correct1);
         String answer2_string = answerTwoEditText.getText().toString();
         boolean correct2 = answerTwoCheckBox.isChecked();
-        Answer answer2 = new Answer(answer2_string, correct2);
+        question.getAnswers().get(1).setAnswer(answer2_string);
+        question.getAnswers().get(1).setCorrect(correct2);
         String answer3_string = answerThreeEditText.getText().toString();
         boolean correct3 = answerThreeCheckBox.isChecked();
-        Answer answer3 = new Answer(answer3_string, correct3);
+        question.getAnswers().get(2).setAnswer(answer3_string);
+        question.getAnswers().get(2).setCorrect(correct3);
         String answer4_string = answerFourEditText.getText().toString();
         boolean correct4 = answerFourCheckbox.isChecked();
-        Answer answer4 = new Answer(answer4_string, correct4);
+        question.getAnswers().get(3).setAnswer(answer4_string);
+        question.getAnswers().get(3).setCorrect(correct4);
 
         boolean allEditTextsContainText = false;
 
@@ -109,20 +109,14 @@ public class AdminVerifyQuestionActivity extends AppCompatActivity {
         }
 
         if (allEditTextsContainText && isThereAtLeastOneCorrectAnswer) {
-            List<Answer> answers = new ArrayList<Answer>();
-            answers.add(answer1);
-            answers.add(answer2);
-            answers.add(answer3);
-            answers.add(answer4);
-
-            Question final_question = new Question(question_string, answers, true);
+            Question final_question = new Question(question_string, question.getAnswers(), true);
 
             Call<Question> call = client.getApiService().updateQuestion(question.getId(), final_question);
             call.enqueue(new Callback<Question>() {
                 @Override
                 public void onResponse(Call<Question> call, Response<Question> response) {
                     if (response.code() == 200) {
-                        Toast.makeText(AdminVerifyQuestionActivity.this, "The question was successfully verified.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AdminVerifyQuestionActivity.this, "The question report was successfully resolved.", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(AdminVerifyQuestionActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);

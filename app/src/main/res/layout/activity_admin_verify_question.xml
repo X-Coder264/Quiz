@@ -161,7 +161,7 @@
                 android:id="@+id/button_verify_question"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:text="Verificiraj" />
+                android:text="Ispravi" />
 
         </LinearLayout>
     </ScrollView>

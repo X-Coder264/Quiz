@@ -3,7 +3,6 @@ package hr.tvz.quiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hr.tvz.quiz.adapter.QuestionsAdapter;
-import hr.tvz.quiz.fragments.ReportQuestionFragment;
 import hr.tvz.quiz.model.Game;
 import hr.tvz.quiz.model.Question;
 import hr.tvz.quiz.model.Statistic;
@@ -99,7 +97,7 @@ public class GameEndActivity extends AppCompatActivity {
         });
 
         //Recycler view
-        mAdapter = new QuestionsAdapter(questions, this);
+        mAdapter = new QuestionsAdapter(questions, answerPosition, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recycleReviewList.setLayoutManager(mLayoutManager);
         recycleReviewList.setItemAnimator(new DefaultItemAnimator());
@@ -161,15 +159,16 @@ public class GameEndActivity extends AppCompatActivity {
         Statistic statistic = new Statistic();
         String questionsUser = "";
 
-        for (Statistic temp : user.getStatistics()) {
-            System.out.println(temp.getSubjectId() + " " + subject.getId());
-            if (temp.getSubjectId().equals(subject.getId())) {
-                statistic = temp;
-                break;
+        if ( user.getStatistics() != null) {
+            for (Statistic temp : user.getStatistics()) {
+                if (temp.getSubjectId().equals(subject.getId())) {
+                    statistic = temp;
+                    break;
+                }
             }
         }
 
-        if (statistic.getUserId() ==null){
+        if (statistic.getUserId() == null){
             statistic.setPoints(correctCounter);
             statistic.setUserId(user.getId());
             statistic.setSubjectId(subject.getId());
@@ -181,7 +180,9 @@ public class GameEndActivity extends AppCompatActivity {
             statistic.setQuestionsUser(questionsUser);
 
             //ToDo: user na pocetnom ekranu se ne izmjeni...
-            List<Statistic> temp = user.getStatistics();
+            List<Statistic> temp = new ArrayList<>();
+            if ( user.getStatistics() != null)
+                temp = user.getStatistics();
             temp.add(statistic);
             user.setStatistics(temp);
         }
@@ -202,7 +203,7 @@ public class GameEndActivity extends AppCompatActivity {
             }
 
             if (!(newQuestions.isEmpty()))
-            newQuestions = newQuestions.substring(0, newQuestions.length() - 2);
+                newQuestions = newQuestions.substring(0, newQuestions.length() - 2);
 
             if (!(newQuestions.isEmpty()))
                 statistic.setQuestionsUser(statistic.getQuestionsUser() + ", " + newQuestions);
